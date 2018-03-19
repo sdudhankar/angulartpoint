@@ -1,0 +1,368 @@
+<app-angular></app-angular>
+<div class="main">
+  <button type="button" class="btn nextBtn" alignment="right" (click)="next()">Next</button>
+  <button type="button" class="btn-default prevBtn" alignment="left" (click)="prev()">Previous</button>
+</div>
+<div class="main">
+  <br><br>
+  <h1>Angular Directives</h1>
+  <br><br>
+
+  It is a set of instruction to tell angular what to do in certain place of code. <br>
+  It's a custom HTML element or attribute used to power up & extend our HTML.<br>
+  Directives change the general appearance of DOM.<br><br>
+ <b> There are 3 types of directives</b><br><br>
+  <h2>1. Custom/Component:</h2> This is nothing but the new component with some functionality.
+   This directive provides one selector, which render the whole component of that selector tag. 
+   You can use this tag where you want this functionality in Template (HTML).<br>
+   e.g.
+   <div class="vl">
+      <textarea highlight-js [options]="{}" [lang]="'html'">
+          <header></header>,<footer></footer>
+      </textarea>
+      </div><br>
+  <button type="button" class="btn btn-link" (click)="nav_component()">Check How to create and use Custom Directive</button>
+  <br><br>
+
+  <h2>2. Structural:</h2> Structural Directive is used to change DOM layout by adding & removing elements. these
+  directives are control full of dom.<br><br>
+   <h3>i) *ngIf:</h3> The ngIf directive is used when you want to display or hide an element based on a condition.<br>
+    <br>
+    <h4>All Possible combinations of *ngIf are-</h4>
+    <div class="vl">
+    <textarea highlight-js [options]="{}" [lang]="'typescript'">
+      <div *ngIf="false"></div> <!-- never displayed -->
+      <div *ngIf="a > b"></div> <!-- displayed if a is more than b -->
+      <div *ngIf="str == 'yes'"></div> <!-- displayed if str holds the string "yes" -->
+      <div *ngIf="myFunc()"></div> <!-- displayed if myFunc returns a true value -->
+      <div *ngIf="name"></div> <!--name is a class variable, if there is some value in it then it will show.-->
+     </textarea>
+     </div><br>
+     <h4>Different ways of write else part</h4><br>
+<div class="vl">
+    <textarea highlight-js [options]="{}" [lang]="'typescript'">
+  <div *ngIf="10>5 ; else temp">
+       <!-- If condition -->
+  </div>
+  <ng-template #temp>
+       <!-- Else part -->
+  </ng-template>
+       
+    OR
+        
+  <ng-template #elseTemplate>
+        <!-- else -->
+  </ng-template>
+       
+  <ng-container *ngIf="expression; else elseTemplate">
+        <!-- True -->
+  </ng-container>
+    
+    OR
+        
+  <ng-container *ngIf="expression; then thenBlock; else elseBlock"> </ng-container>
+  <ng-template #thenBlock>
+       <!-- then -->
+  <ng-template>
+  <ng-template #elseBlock>
+       <!-- else -->
+  </ng-template>
+      </textarea>
+    </div><br>
+    
+    <div class="vl">
+  <textarea highlight-js [options]="{}" [lang]="'typescript'">
+      import { Component } from '@angular/core';
+
+      @Component({
+        selector: 'app-name',
+        template: `
+          <button (click)="visible = !visible">{ {visible} }  </button>
+          <p *ngIf="visible; else hidden">
+            I'm visible now 
+          </p>
+          <ng-template #hidden>
+            <p>
+              I'm hidden
+            </p>
+          </ng-template>
+        `
+      })
+      export class AppComponent {
+        visible: boolean = false;
+      }
+  </textarea>
+  </div><br>
+
+      <div class="warning">
+      There should be semicolon (;) in if and else part and " "  must be one from if to else part
+    </div><br>
+    <button id="c" class="btn btn-primary blink_me"(click)="demo()">{{live ? 'Hide' : 'Check'}} Live Demo </button>
+    <div *ngIf="live">
+     <iframe
+     src="https://embed.plnkr.co/3OVLGpFi0RQsz3PoVSXA/?show=app,preview"
+     frameborder="0"  width="100%"
+     height="480px"></iframe>
+    </div><br><br>
+
+    <h3>ii) *ngFor:</h3> The role of this directive is to repeat a given DOM element (or a collection of DOM elements), 
+      each time passing it a different value from an array. <br>
+      <b>syntax:</b><br>
+      <div class="vl">
+          <textarea highlight-js [options]="{}" [lang]="'typescript'">
+              *ngFor="let item of items"
+          </textarea>
+          </div><br>
+      • The let item syntax specifies a (template) variable that is receiving each element of the items array.
+       (let is used for to create variable (data type) item is temporary variable)<br>
+      • The items is the collection of items from your controller.<br><br>
+      e.g. 1. simple array: <br>
+    //in component class <br>
+      this.cities = ['Miami', 'Sao Paulo', 'New York']; <br><br>
+ 
+    // in template/html file <br>
+    &lt;div *ngFor="let c of cities"&gt; <br>
+    &lt;div&gt; {{ '{' }}{{ '{' }} c {{ '}' }}{{ '}' }}&lt;/div&gt; <br>
+    &lt;/div&gt;<br><br>
+    e.g. 2. Array of objects / JSON object<br>
+    //in component class <br>
+    <div class="vl">
+    <pre><code>
+    this.people = [ <br>
+    {{ '{' }} name: 'Anderson', age: 35, city: 'Sao Paulo' {{ '}' }}, <br>
+    {{ '{' }} name: 'John', age: 12, city: 'Miami' {{ '}' }},       <br>
+    {{ '{' }} name: 'Peter', age: 22, city: 'New York' {{ '}' }}    <br>
+           ];
+          </code></pre>   
+        </div>      
+  <br><br>
+    //in Template / html file
+    <div class="vl">
+  <pre><code>
+    &lt;table&gt;
+    &lt;thead&gt;
+    &lt;tr&gt;
+    &lt;th&gt;Name&lt;/th&gt;
+    &lt;th&gt;Age&lt;/th&gt;
+    &lt;th&gt;City&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tr *ngFor="let p of people"&gt;
+    &lt;td&gt; {{ '{' }}{{ '{' }} p.name {{ '}' }} {{ '}' }} &lt;/td&gt;
+    &lt;td&gt; {{ '{' }}{{ '{' }}  p.age  {{ '}' }} {{ '}' }}&lt;/td&gt;
+    &lt;td&gt; {{ '{' }}{{ '{' }} p.city  {{ '}' }} {{ '}' }}&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/table&gt;
+       
+  </code></pre>
+</div><br><br>
+e.g. 3 Nested Array<br>
+//in Component class<br>
+<div class="vl">
+    <pre><code>
+this.peopleByCity = [
+{{ '{' }}
+city: 'Miami',
+people: [
+{{ '{' }} name: 'John', age: 12 {{ '}' }},
+{{ '{' }} name: 'Angel', age: 22 {{ '}' }}
+   ]
+   {{ '}' }},
+{{ '{' }}
+city: 'Sao Paulo',
+people: [
+{{ '{' }} name: 'Anderson', age: 35 {{ '}' }},
+{{ '{' }} name: 'Felipe', age: 36 {{ '}' }}
+      ]
+{{ '}' }}
+];
+</code></pre>
+</div>
+//NgFor to render one h2 for each city
+<div class="v1">
+ <pre><code>
+&lt;div *ngFor="let item of peopleByCity"&gt;
+  </code></pre>
+</div>
+// use a nested directive to iterate through the people for a given city :
+
+<div class="vl">
+    <pre><code>
+      &lt;table&gt;
+      &lt;thead&gt;
+      &lt;tr&gt;
+      &lt;th&gt;Name&lt;/th&gt;
+      &lt;th&gt;Age&lt;/th&gt;
+    
+      &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tr *ngFor="let p of item.people"&gt;
+      &lt;td&gt; {{ '{' }}{{ '{' }} p.name {{ '}' }} {{ '}' }} &lt;/td&gt;
+      &lt;td&gt; {{ '{' }}{{ '{' }}  p.age  {{ '}' }} {{ '}' }}&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;/table&gt;
+         
+    </code></pre>
+  </div>
+  <hr>
+      <b><i>Note:</i></b>
+      Repeat above NgFor and table directive for 2n’d city people list.
+      <hr>
+    
+      If we need the index of each item when we’re iterating an array.<br>
+      let idx = index to the value of our ngFor directive.<br>
+      <div class="vl">
+          <pre><code>
+      &lt;div *ngFor="let c of cities; let num = index"&gt;
+      &lt;div&gt; {{ '{' }}{{ '{' }}  num+1 {{ '}' }} {{ '}' }}  - {{ '{' }}{{ '{' }}   c {{ '}' }} {{ '}' }} &lt;/div&gt;
+   &lt;/div&gt;
+      
+  </code></pre>
+</div>
+
+<b>3.	Attribute Directives:</b>
+There are 3 types of Attribute Directives: <br>
+1.    Attribute or Built in:<br>
+i)    ngStyle :  used to set a given DOM element CSS properties from Angular expressions. The simplest way to use this directive is by doing [style.&lt;cssproperty&gt;]="value”.
+ 
+  <div class="vl">
+    <pre><code>  
+&lt;div [style.background-color]="'yellow'"&gt; 
+Uses fixed yellow background   
+&lt;/div&gt;
+</code></pre></div>
+Another way to set fixed values is by using the NgStyle attribute and using key value pairs for each property you want to set, like this:
+<div class="vl">
+  <pre><code>
+&lt;div [ngStyle]="{{ '{' }}color: 'white', 'background-color': 'blue'{{ '}' }} "&gt;
+ </code></pre></div>
+Uses fixed white text on blue background.
+
+<hr>
+<b><i>Note:</i></b>
+In the ng-style specification we have single quotes around background-color
+but not around color. <br>
+<b>Why is that?</b> Well, the argument to ng-style is a Javascript object and color is a valid key, without quotes. With background-color, however, the dash character isn’t allowed in an object key, unless it’s a string so we have to quote it.
+But the real power of the NgStyle directive comes with using dynamic values.
+In our example, we are defining two input boxes: fontSize is a class variable.
+
+<div class="vl">
+  <pre><code> 
+&lt;div&gt;
+  &lt;span [ngStyle]="{{ '{' }}color: 'red'{{ '}' }}" [style.font-size.px]="fontSize"&gt;
+  red text
+  &lt;/span&gt;
+  &lt;/div&gt;
+  </code></pre></div>
+  <hr>
+  <b><i>Note:</i></b>
+[style.fontSize.em] to express the font size in ems or even in percentage using [style.fontSize.%].
+
+<div class="vl">
+  <pre><code> 
+&lt;div&gt;
+  &lt;input type="text" name="color" value="{{ '{' }}{{ '{' }}color{{ '}' }}{{ '}' }}" #colorinput&gt;
+&lt;/div&gt;
+   </code></pre></div>
+  
+   The other two elements use the #colorinput to set the text and background colors:
+   <div class="vl">
+    <pre><code> 
+   &lt;span [ngStyle]="{{ '{' }}color: colorinput.value{{ '}' }}"&gt;
+   {{ '{' }}{{ '{' }} colorinput.value {{ '}' }}{{ '}' }} text
+   &lt;/span&gt;
+    
+   &lt;div [style.background-color]="colorinput.value"
+   style="color: white;"&gt;
+   {{ '{' }}{{ '{' }} colorinput.value {{ '}' }}{{ '}' }} background
+   &lt;/div&gt;
+   </code></pre></div>
+
+  <b> ii)  ngClass: </b>The NgClass directive, represented by a ngClass attribute in your HTML template,
+   allows you to dynamically set and change the CSS classes for a given DOM element. 
+   The first way to use this directive is by passing in an object literal.
+  The object is expected to have the keys as the class names and the values should be a truthy/falsy value to indicate whether the class should be applied or not.
+<br>
+.css file
+<div class="vl">
+  <pre><code>
+.bordered {{ '{' }}
+border: 1px dashed black;
+background-color: #eee;
+{{ '}' }}
+&lt;div [ngClass]="{{ '{' }}bordered: false{{ '}' }}"&gt;This is never bordered&lt;/div&gt;
+&lt;div [ngClass]="{{ '{' }}bordered: true{{ '}' }}"&gt;This is always bordered&lt;/div&gt;
+</code></pre>
+</div>
+To make it dynamic we add a variable as the value for the object value, like this:
+<div class="vl">
+  <pre><code>
+&lt;div [ngClass]=" {{ '{' }}bordered: isBordered{{ '}' }}"&gt;
+Using object literal. Border  {{ '{' }}{{ '{' }} isBordered ? "ON" : "OFF" {{ '}' }}{{ '}' }}
+&lt;/div&gt;
+
+
+export class NgClassSampleApp {{ '{' }}
+  isBordered: boolean;
+  classesObj: Object;
+  classList: string[];
+  {{ '}' }}
+</code></pre></div>
+&lt;div [ngClass]="{{ '{' }}'bordered-box': false {{ '}' }}"&gt;...&lt;/div&gt; <br>
+We can also use a list of class names to specify which class names should be added to the element.
+For that, we can either pass in an array literal:
+<div class="vl">
+  <pre><code>
+&lt;div class="base" [ngClass]="['blue', 'round']"&gt;
+  This will always have a blue background and
+  round corners
+&lt;/div&gt;
+   
+  Or declare an array variable in our component:
+  this.classList = ['blue', 'round'];
+   
+  And passing it in:
+   
+  &lt;div class="base" [ngClass]="classList"&gt;
+  This is  {{ '{' }}{{ '{' }} classList.indexOf('blue') > -1 ? "" : "NOT" {{ '}' }}{{ '}' }} blue
+  and  {{ '{' }}{{ '{' }} classList.indexOf('round') > -1 ? "" : "NOT" {{ '}' }}{{ '}' }} round
+  &lt;/div&gt;
+  </code></pre></div>
+
+  <b> iii) ngSwitch:</b> Allow a single evaluation of an expression, and then display nested elements based on the value that resulted from that evaluation. Once we have the result then we can:
+• Describe the known results, using the ngSwitchCase directive <br>
+• Handle all the other unknown cases with ngSwitchDefault<br>
+
+Let’s rewrite our example using this new set of directives: <br>
+<div class="vl">
+  <pre><code>
+&lt;div class="container" [ngSwitch]="myVar"&gt;
+&lt;div *ngSwitchCase="'A'"&gt;Var is A&lt;/div&gt;
+&lt;div *ngSwitchCase="'B'"&gt;Var is B&lt;/div&gt;
+&lt;div *ngSwitchDefault&gt;Var is something else&lt;/div&gt;
+&lt;/div&gt;
+</code></pre></div>
+Having the ngSwitchDefault element is optional. If we leave it out, nothing will be rendered when
+myVar fails to match any of the expected values.
+You can also declare the same *ngSwitchCase value for different elements. <br><br>
+
+
+
+
+
+  <button (click)="demo()">{{live ? 'Hide' : 'Show'}} Demo</button>
+ <div *ngIf="live">
+  <iframe
+  src="https://embed.plnkr.co/2tpFX9Y26FZ33AmTzJyd/?show=app,preview"
+  frameborder="0"  width="100%"
+  height="480px"></iframe>
+</div>
+
+
+<br><br>
+<br><br><br>
+</div>
+<footer class="main">
+  <button type="button" class="btn bottomNextBtn" (click)="next()">Next</button>
+  <button type="button" class="btn-default bottomPrevBtn" (click)="prev()">Previous</button> 
+</footer>

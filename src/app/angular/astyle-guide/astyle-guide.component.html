@@ -1,0 +1,103 @@
+<app-angular></app-angular>
+<div class="main">
+  <button type="button" class="btn nextBtn" alignment="right" (click)="next()">Next</button>
+  <button type="button" class="btn-default prevBtn" alignment="left" (click)="prev()">Previous</button>
+</div>
+<div class="main">
+  <br><br>
+  <h1>Angular Style Guide</h1>
+  <br><br>
+  <ul>
+<li>Define one thing, such as a service or component, per file. Limiting files to 400 lines of code.</li>
+<li>Define small functions limiting to no more than 75 lines.</li>
+</ul>
+<h2>Naming Convention of file</h2>
+<ul>
+<li>Follow a pattern that describes the symbol's feature then its type. The recommended pattern is feature.type.ts.<br>
+  For example, app/heroes/hero-list.component.ts</li>
+  <li>Separate file names with dots and dashes.</li>
+  <li>Use conventional type names including .service, .component, .pipe, .module, and .directive.</li>
+</ul>
+<h2>Symbols and file names</h2>
+<ul>
+<li>Use consistent names for all assets named after what they represent.</li>
+<li>Use upper camel case for class names.</li>
+<li>Match the name of the symbol to the name of the file.</li>
+<li>The filename the conventional suffix (such as .component.ts, .directive.ts, .module.ts, .pipe.ts, or .service.ts) for a file of that type.</li>
+</ul>
+<h2>Service names</h2>
+<ul>
+<li>Use consistent names for all services named after their feature.</li>
+<li>Suffix a service class name with Service. For example, something that gets data or heroes should be called a DataService or a HeroService.</li>
+</ul>
+<h2>Directive selectors</h2>
+<ul>
+<li>Use lower camel case for naming the selectors of directives.</li>
+</ul>
+<h2>Custom prefix for components</h2>
+<ul>
+<li>Use a hyphenated, lowercase element selector value (e.g. admin-users).</li>
+<li>Use a custom prefix for a component selector. For example, the prefix toh represents from Tour of Heroes and the prefix adminrepresents an admin feature area.</li>
+<li>Use a prefix that identifies the feature area or the app itself.</li>
+</ul>
+<h2>Custom prefix for Directives</h2>
+<ul>
+<li>Use a custom prefix for the selector of directives (e.g, the prefix toh from Tour of Heroes).</li>
+<li>Spell non-element selectors in lower camel case unless the selector is meant to match a native HTML attribute.</li>
+</ul>
+<h2>Pipe names</h2>
+<ul>
+<li>Use consistent names for all pipes, named after their feature.</li>
+<li>E.g. ellipsis.pipe.ts,	init-caps.pipe.ts</li>
+</ul>
+<h2>Unit test file names</h2>
+<ul>
+<li>Name test specification files the same as the component they test.</li>
+<li>Name test specification files with a suffix of .spec.</li>
+</ul>
+<h2>End-to-End (E2E) test file names</h2>
+<ul>
+<li>Name end-to-end test specification files after the feature they test with a suffix of .e2e-spec. such as app.e2e-spec.ts, heroes.e2e-spec.ts
+</li></ul>
+<h2>Angular NgModule names</h2>
+<ul>
+<li>Append the symbol name with the suffix Module.</li>
+<li>Give the file name the .module.ts extension.</li>
+<li>Name the module after the feature and folder it resides in.</li>
+<li>Suffix a RoutingModule class name with RoutingModule.</li>
+<li>End the filename of a RoutingModule with -routing.module.ts.</li>
+</ul>
+<h2>Coding conventions</h2>
+<ul>
+<li>Have consistent set of coding, naming, and whitespace conventions.</li>
+<li>Use upper camel case when naming classes.</li>
+<li>Name the module after the feature and folder it resides in.</li>
+</ul>
+<h2>Constants</h2>
+<ul>
+<li>Declare variables with const if their values should not change during the application lifetime.</li>
+<li>Consider spelling const variables in lower camel case.</li>
+<li>Tolerate existing const variables that are spelled in UPPER_SNAKE_CASE.</li>
+</ul>
+<h2>Interfaces</h2>
+<ul>
+<li>Name an interface using upper camel case.</li>
+<li>Consider naming an interface without an I prefix.</li>
+<li>Consider using a class instead of an interface.</li>
+</ul>
+<h2>Properties and methods</h2>
+<ul>
+<li>Use lower camel case to name properties and methods.</li>
+<li>Avoid prefixing private properties and methods with an underscore.</li>
+<li>Consider using a class instead of an interface.</li>
+</ul>
+<br>
+<div class="warning">
+  Above all Angular Style guides are recommended by google.
+</div>
+
+</div>
+<footer class="main">
+  <button type="button" class="btn bottomNextBtn" (click)="next()">Next</button>
+  <button type="button" class="btn-default bottomPrevBtn" (click)="prev()">Previous</button> 
+</footer>

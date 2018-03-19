@@ -1,0 +1,143 @@
+<app-angular></app-angular>
+<div class="main">
+  <button type="button" class="btn nextBtn" alignment="right" (click)="next()">Next</button>
+  <button type="button" class="btn-default prevBtn" alignment="left" (click)="prev()">Previous</button>
+</div>
+<div class="main">
+  <br><br>
+  <h1>Class and Objects in Angular</h1>
+  <br><br>
+<h2>Class:</h2>
+Class is a blueprint for creating objects. class helps to bind the variables and method. javascript and earlier version of 
+ES5 doesn't support this feature. but typescript get this feature from ES6.
+<br><br>
+<h2>How to create class?</h2>
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+export class <className>
+  {
+
+  }
+</textarea></div>
+<br>
+<strong>export</strong> keyword gives accessibility of other classes to use it and import the class.<br><br>
+
+<h3>A class definition can include the following −</h3>
+<h4>1. Variables</h4> −Any types of variable can declared inside a class. <br> <br> 
+<h4>2. Constructors</h4> − Responsible for allocating memory for the objects of the class <br><br>
+<h4>3. Functions</h4> − Functions represent actions an object can take. it also called methods.<br><br>
+
+  <div class="vl">
+  <textarea highlight-js [options]="{}" [lang]="'typescript'">
+export class AppComponent
+{ 
+  public a:string;       //class variable 
+  static x="HTML";    // static variable 
+  constructor()
+  {                       
+  }                       
+  meth():void           //Function or method
+  {                    
+    let user=prompt("enter your value").toLowerCase();// javascript code
+    var s=10;                //local variable 
+    this.a=5+s;             //accessing class variable 
+  }                                
+} 
+var obj=new AppComponent(); //other way: var obj:AppComponent=new AppComponent();           
+obj.meth();                             
+obj.a="john";   //Setting class variable
+</textarea>
+</div>
+<div class="success">
+1. Object creation must be outside of class.<br>
+2. All the javascript code can access inside the method only.
+</div>
+
+<h2>Constructor</h2>
+<br>
+When a class has no constructor defined explicitly one will be created automatically<br>
+In TypeScript you can have only one constructor per class.<br><br>
+
+Constructor overloading is not allowed in typescript so go for below constructor overloading.
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+constructor()
+constructor(a: string)
+constructor(a?:any) 
+{
+    this.a=a;  
+}
+ 
+var app=new AppComponent("Sachin");
+</textarea></div><br>
+
+In Angular2 constructors are used for dependency injection and inject services.<br>
+The associated decorator (@Component or Injectable) collects metadata (types or hints within @Inject)
+to determine what to provide to the object to instantiate.<br>
+<div class="warning">
+constructors aren't part of the component lifecycle.
+</div>
+ 
+<h2>Access Specifier</h2><br>
+<b>1.   Private:</b> access inside the class only.<br>
+<b>2.   Public:</b> access everywhere.<br>
+<b>3.   Protected:</b> accessed by instances of deriving classes.<br>
+e.g. private test: string="it's a private variable";<br><br>
+
+<h2>Function or Method</h2>
+1. Simple function <br>
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+ add()
+ {
+ }
+</textarea></div>
+2. Function with return type <br>
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+ add():void
+ {
+ }
+</textarea></div>
+3. Parameterized function <br>
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+ add(a:number, b:number):void
+ {
+ }
+</textarea></div>
+4. Rest parameter <br>
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+ add(…nums:number[])
+ {
+ } 
+//Function Calling 
+ add(1,2,3) 
+ add(1,2) 
+</textarea></div>
+5. Default parameter <br>
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+ add(n:number, n1:number=15)
+ {
+ }
+</textarea></div>
+<div class="warning">
+Return type of method is void but when methods do not declare an explicit returning type and return a value, it is assumed they can return anything (any type).
+</div>
+
+<button id="c" class="btn btn-primary blink_me"(click)="demo()">{{live ? 'Hide' : 'Check'}} Live Demo </button>
+<div *ngIf="live">
+ <iframe
+ src="https://embed.plnkr.co/SabcTveGUEkQts87MhMB/?show=app,preview"
+ frameborder="0"  width="100%"
+ height="480px"></iframe>
+</div>
+
+<br><br><br><br>
+</div>
+<footer class="main">
+  <button type="button" class="btn bottomNextBtn" (click)="next()">Next</button>
+  <button type="button" class="btn-default bottomPrevBtn" (click)="prev()">Previous</button> 
+</footer>

@@ -1,0 +1,37 @@
+
+<header class="fixed-header">
+<div >
+<div class="panel panel-default">
+  <figure>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="./assets/header.png" alt="header"  width="300" height="64" >
+  </figure>
+
+   </div>
+</div>
+</header>
+<div class="fixed-navbar">
+<nav class="navbar bg-color mainnav">
+<ul class="nav">  
+    <li class="nav-item active">
+        <a class="nav-link about" [routerLink]="['home']" routerLinkActive="active" id="about">About</a>
+    </li>
+    <li class="nav-item menu active">
+        <a class="nav-link angular" routerLink='/ahome' routerLinkActive="active" id="ang">Angular</a>
+    </li>
+  <!--
+  <li class="nav-item menu1 active">
+    <a class="nav-link java" routerLink='/java' routerLinkActive="active" id="java">Java</a>
+  </li>
+-->
+</ul>
+</nav>
+</div>
+
+<router-outlet></router-outlet>
+<body class="main">   
+</body>
+<footer class="main">
+    <button (click)="topFunction()" id="myBtn" title="Go to top">Top</button>
+ <br><br>
+    &copy; Copyright 2018. www.angulartpoint.com. All rights reserved.
+   </footer>  

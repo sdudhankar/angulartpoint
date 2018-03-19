@@ -1,0 +1,67 @@
+<app-angular></app-angular>
+<div class="main">
+  <button type="button" class="btn nextBtn" alignment="right" (click)="next()">Next</button>
+  <button type="button" class="btn-default prevBtn" alignment="left" (click)="prev()">Previous</button>
+</div>
+<div class="main">
+  <br><br>
+  <h1>Fat Arrow Functions</h1>
+  <br><br>
+  Fat arrow => functions are a shorthand notation for writing functions.<br><br>
+  In ES5, whenever we want to use a function as an argument 
+  we have to use the function keyword 
+  along with {{ '{' }} {{ '}' }} braces like so: <br><br>
+  ES5-like example <br><br>
+  <div class="vl">
+      <textarea highlight-js [options]="{}" [lang]="'typescript'">
+          var data = ['Alice Green', 'Paul Pfifer', 'Louis Blakenship']; 
+          data.forEach(function(line) { 
+          console.log(line); 
+          });
+      </textarea>
+      </div><br>
+
+However with the => syntax we can instead rewrite it like so:<br><br>
+Typescript example<br><br>
+<div class="vl">
+    <textarea highlight-js [options]="{}" [lang]="'typescript'">
+        var data: string[] = ['Alice Green', 'Paul Pfifer', 'Louis Blakenship'];
+        data.forEach( (line) => console.log(line) );        
+    </textarea>
+    </div><br>
+
+
+The => syntax can be used both as an expression and statement:<br>
+<b>i. As an expression</b><br>
+<div class="vl">
+    <textarea highlight-js [options]="{}" [lang]="'typescript'">
+        var evens = [2,4,6,8];
+        var odds = evens.map(v => v );  //output 2,4,6,8         
+    </textarea>
+    </div><br>
+
+
+<b>ii. As a statement:</b><br>
+<div class="vl">
+    <textarea highlight-js [options]="{}" [lang]="'typescript'">
+        var data=['first line', 'second line']; 
+        data.forEach( line => {
+        console.log(line.toUpperCase());
+    });        
+    </textarea>
+    </div><br>
+
+Output : FIRST LINE, SECOND LINE <br><br>
+One important feature of the => syntax is that it shares the same this as the surrounding code. <br>
+This is important and different than what happens when you normally create a function in Javascript.<br>
+Generally when you write a function in Javascript that function is given its own this<br>
+
+
+
+
+
+</div>
+<footer class="main">
+  <button type="button" class="btn bottomNextBtn" (click)="next()">Next</button>
+  <button type="button" class="btn-default bottomPrevBtn" (click)="prev()">Previous</button> 
+</footer>

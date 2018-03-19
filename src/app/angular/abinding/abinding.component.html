@@ -1,0 +1,261 @@
+<app-angular></app-angular>
+<div class="main">
+  <button type="button" class="btn nextBtn" alignment="right" (click)="next()">Next</button>
+  <button type="button" class="btn-default prevBtn" alignment="left" (click)="prev()">Previous</button>
+</div>
+<div class="main">
+  <br><br>
+  <h1>Binding</h1>
+  <br><br>
+  <strong><i><q>The communication/passing data between class and templates/view is called the Binding.</q></i></strong> <br><br>
+  There are 4 types of binding in Angular <br><br>
+  <figure>
+    <img src="../assets/Angular/binding.jpg" class="img-rounded" alt="Binding" width="604" height="280">
+  </figure><br><br>
+  <h2>1. Interpolation or template binding: </h2>
+  Its binds variable to template.<br><br>
+  <ul>
+    <li><b>Direction:</b> one way binding.  Template to view.</li>
+    <li><b>Symbol:</b> {{ '{' }}{{ '{' }} {{ '}' }}{{ '}' }}</li>
+  </ul>
+ <b>Syntax:</b>  {{ '{' }}{{ '{' }} data {{ '}' }}{{ '}' }}   <br><br>
+ <h3>Common uses of Interpolation </h3>
+ <div class="vl">
+  <textarea highlight-js [options]="{}" [lang]="'html'">
+
+{ { Title:' + pageTitle } } // string concatenation with value
+
+{ { 2*20+1 } }   //mathematics calculation 
+
+{ { title:'+ getTitle() } } //calling function 
+
+<h1 innerText= { { pageTitle } }></h1> // As an element property
+  </textarea>
+  </div><br>
+    <div class="info">
+      Here pageTitle is a class variable  and <br>
+      getTitle() is a class method.
+    </div><br>
+    <div class="vl">
+      <textarea highlight-js [options]="{}" [lang]="'typescript'">
+        import { Component } from '@angular/core';
+
+        @Component({
+          selector: 'app-name',
+          template: `
+            <p> My name is { { name } } </p>
+          `
+        })
+        export class NameComponent {
+          name: string = "John";
+        }
+      </textarea>
+      </div><br>
+
+    <button id="c" class="btn btn-primary blink_me"(click)="demo()">{{live ? 'Hide' : 'Check'}} Live Demo </button>
+    <div *ngIf="live">
+     <iframe
+     src="https://embed.plnkr.co/XLZulYdc7ENp1ChBKOG1/?show=app,preview"
+     frameborder="0"  width="100%"
+     height="480px"></iframe>
+    </div> <br><br>
+ 
+
+  <h2>2. Property binding: </h2> Angular accept all property of HTML Tags and binds it with class.
+  Like property of html tag (DOM). Property binding helps to control element property values from the component 
+  and change them whenever needed. <br><br>
+  <ul>
+    <li><b>Direction:</b> one way binding. Template to view.</li>
+    <li><b>Symbol:</b> [ ]</li>
+  </ul>
+<b>Syntax:</b> [property]="data" <br><br>
+There are 3 way to define property binding<br>
+<div class="vl">
+  <textarea highlight-js [options]="{}" [lang]="'html'">
+<img src="{ { imagePath } }">
+<img [src]="imagePath">
+<img bind-src="imagePath">
+</textarea></div> <br>
+<div class="info">
+Angular recommended to Property binding [ ] syntax for property binding.
+</div>
+<div class="vl">
+  <textarea highlight-js [options]="{}" [lang]="'typescript'">
+    import { Component } from '@angular/core';
+
+    @Component({
+      selector: 'app-name',
+      template: `
+        <img [src]='imagePath' height='30px' width='30px'>
+        <button [disabled]="isDisabled">Regular button</button>
+      `
+    })
+    export class NameComponent {
+      imagePath="../assets/Angular/binding.jpg";
+      isDisabled = true;
+    }
+  </textarea>
+  </div><br>
+  <button id="c" class="btn btn-primary blink_me"(click)="demo1()">{{live ? 'Hide' : 'Check'}} Live Demo </button>
+  <div *ngIf="live1">
+   <iframe
+   src="https://embed.plnkr.co/IhQ0Ks8EP79nVTx6Cejy/?show=app,preview"
+   frameborder="0"  width="100%"
+   height="480px"></iframe>
+  </div><br><br>
+
+  <h2>3.	Event binding: </h2> 
+  Event is nothing but the action from the user like click, hover or any keyboard action.
+  <br><br>
+  <ul>
+    <li><b>Direction:</b> one way binding. View to template.</li>
+    <li><b>Symbol:</b> ( ) </li>
+  </ul>
+<b>Syntax:</b> (event)="statement"<br><br>
+<h3>Common types of Event Binding</h3>
+<ul>
+  <li>(click)="myMethod()"</li>
+  <li>(dblclick)="myMethod()"</li>
+  <li>(submit)="myMethod()"  </li>
+  <li>(scroll)="myMethod()"</li>
+  <li>(keypress)="myMethod()"</li>
+</ul><br>
+<div class="vl">
+    <textarea highlight-js [options]="{}" [lang]="'typescript'">
+        import { Component } from '@angular/core';
+
+        @Component({
+          selector: 'app-name',
+          template: `
+            <button (click)="clickMe()">Click </button>
+            <button (dblclick) = "dblClickMe()"> Click </button>
+          `
+        })
+        export class NameComponent {
+          clickMe() {
+            alert("Simple click");
+          }
+          dblClickMe(){
+            alert("Double click");
+          }
+        }
+    </textarea>
+    </div><br>
+    <button id="c" class="btn btn-primary blink_me"(click)="demo2()">{{live ? 'Hide' : 'Check'}} Live Demo </button>
+    <div *ngIf="live2">
+     <iframe
+     src="https://embed.plnkr.co/5Hx8xuM9z8qpwNylrrmt/?show=app,preview"
+     frameborder="0"  width="100%"
+     height="480px"></iframe>
+    </div><br><br>
+
+  <h2>4.	Two-way Binding: </h2>
+  The idea this is intended to invoke is that we're using both the input [] brackets and the output () parenthesis. 
+  It's an indication of the two-way bind. the [(ngModel)] is called a "banana in a box" syntax. 
+  <br><br>
+  <ul>
+    <li><b>Direction:</b> Two-way binding. Template to view and vise versa</li>
+    <li><b>Symbol:</b> [( )]</li>
+  </ul>
+  <b>Syntax:</b> [(ngModel)]="property" <br>
+  <figure>
+    <img src="../assets/Angular/two-way binding.gif" class="img-rounded" alt="Two way Binding" width="704" height="300">
+  </figure><br>
+  <b>Import the FormsModel in app.module.ts file</b><br><br>
+  <div class="vl">
+      <textarea highlight-js [options]="{}" [lang]="'typescript'">
+          import { BrowserModule } from '@angular/platform-browser';
+          import { NgModule } from '@angular/core';
+         
+          import { FormsModule } from '@angular/forms'; //Added for ngModel
+ 
+          
+          import { AppComponent } from './app.component';
+          
+          @NgModule({
+            declarations: [
+              AppComponent
+            ],
+            imports: [
+              BrowserModule,
+              FormsModule, //Added from ngModel
+            ],
+            providers: [],
+            bootstrap: [AppComponent]
+          })
+          export class AppModule { }
+      </textarea>
+      </div><br>
+  <div class="vl">
+      <textarea highlight-js [options]="{}" [lang]="'typescript'">
+          import { Component } from '@angular/core';
+
+          @Component({
+            selector: 'app-name',
+            template: `
+              <input [(ngModel)]="name"> 
+              <p> My name is { { name } } </p>
+            `
+          })
+          export class AppComponent {
+            name: string = "John";
+          }
+      </textarea>
+      </div><br>
+
+      <button id="c" class="btn btn-primary blink_me"(click)="demo3()">{{live ? 'Hide' : 'Check'}} Live Demo </button>
+      <div *ngIf="live3">
+       <iframe
+       src="https://embed.plnkr.co/uHh7hjplt44RyKaxWnTo/?show=app,preview"
+       frameborder="0"  width="100%"
+       height="480px"></iframe>
+      </div><br>
+
+      <h2>NgNonBindable</h2><br>
+We use ngNonBindable when we want tell Angular not to compile or bind a particular section of our page.
+
+<div class="vl">
+    <textarea highlight-js [options]="{}" [lang]="'typescript'">
+        import { Component } from '@angular/core';
+
+        @Component({
+          selector: 'app-root',
+          template:  `
+          <div>
+          <span>{ {content } }</span>
+          <span ngNonBindable>
+                 This is what { { content } } rendered
+          </span>
+          </div> `
+        })
+        export class AppComponent {
+          content:string="This content can render";
+        }
+    </textarea>
+</div><br>
+<button id="c" class="btn btn-primary blink_me"(click)="demo4()">{{live ? 'Hide' : 'Check'}} Live Demo </button>
+<div *ngIf="live4">
+ <iframe
+ src="https://embed.plnkr.co/YLv1kydmAOJEjdM2Bl0v/?show=app,preview"
+ frameborder="0"  width="100%"
+ height="480px"></iframe>
+</div>      <br>
+      <br><br>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<footer class="main">
+  <button type="button" class="btn bottomNextBtn" (click)="next()">Next</button>
+  <button type="button" class="btn-default bottomPrevBtn" (click)="prev()">Previous</button> 
+</footer>

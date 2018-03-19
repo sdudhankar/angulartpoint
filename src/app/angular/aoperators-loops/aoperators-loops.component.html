@@ -1,0 +1,86 @@
+<app-angular></app-angular>
+<div class="main">
+  <button type="button" class="btn nextBtn" alignment="right" (click)="next()">Next</button>
+  <button type="button" class="btn-default prevBtn" alignment="left" (click)="prev()">Previous</button>
+</div>
+<div class="main">
+  <br><br>
+  <h1>Operators</h1>
+  <br><br>
+ <h2> The major operators in Angular 2 Supports are −</h2><br>
+  <b>1.	Arithmetic operators:</b> = , -, *, /, %, ++, --,  <br><br>
+  <b>2.	Logical operators:</b> &&, ||, ! <br><br>
+  <b>3.	Relational operators:</b> >, <, >=, <=, ==, !=              <br><br>
+  <b>4.	Bitwise operators:</b> &, |, ^, ~, <<, >>, >>>      <br><br>
+  <b>5.	Assignment operators:</b> =, +=, -=, *=, /=         <br><br>
+  <b>6.	Ternary/conditional operator:</b> Test? expr1 : expr2 <br>
+  e.g.  n>0 ? “pos” : “neg” <br><br>
+  <b>7.	String operator/concatination:</b> + <br>
+  e.g. “Hello”+”World”   //HelloWorld  <br><br>
+  <b>8.	Type Operator:</b> return data type of operator <br>
+  e.g. var n=10; console.log(typeof n)  //number<br><br>
+  <b>9.	Negation operator:</b>  -  <br>
+  e.g. n=5; p=-n;  //-5<br><br>
+  <b>10.	Instanceof operator:</b> to test if an object is of a specified type or not.  <br><br>
+  <button id="c" class="btn btn-primary blink_me"(click)="demo()">{{live ? 'Hide' : 'Check'}} Live Demo </button>
+  <div *ngIf="live">
+   <iframe
+   src="https://embed.plnkr.co/dUTSIr0nooMAatf5TQ3p/?show=app,preview"
+   frameborder="0"  width="100%"
+   height="480px"></iframe>
+  </div>
+  <br><br>
+  <h2>Decision making inside class of component</h2>
+  <b>1. If statement</b><br>
+  <b>2. If…else statement</b> <br>
+  <b>3. Nested if statement</b> <br><br>
+  <button id="c" class="btn btn-primary blink_me"(click)="demo()">{{live ? 'Hide' : 'Check'}} Live Demo </button>
+  <div *ngIf="live">
+   <iframe
+   src="https://embed.plnkr.co/MXvZFJD0fgN7lBwebXmQ/?show=app,preview"
+   frameborder="0"  width="100%"
+   height="480px"></iframe>
+  </div>
+  
+  <br><br>
+  <h2>Loops</h2>
+  <h3>1. For loop:</h3>
+   iterations are definite/fixed<br><br>
+   <div class="vl">
+      <textarea highlight-js [options]="{}" [lang]="'typescript'">
+          for(let i=0;i<5;i++)
+          {  
+            console.log(i)
+          }
+      </textarea>
+      </div><br>
+<h3>2. While loop: </h3>
+ iterations are indeterminate or unknown.<br><br>
+ <div class="vl">
+    <textarea highlight-js [options]="{}" [lang]="'typescript'">
+  var i=0;  
+  while(i < 5) 
+  { 
+        console.log(i)
+  } 
+    </textarea>
+    </div>
+<h3>3. do while : </h3>
+Similar to the while loop but the do...while loop evaluate the condition for the first time the loop executes.<br>
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+  var i=0;  
+  do{
+       console.log(i);
+    } while(i<5);
+    </textarea>
+    </div> 
+
+
+
+
+</div>
+<footer class="main">
+  <button type="button" class="btn bottomNextBtn" (click)="next()">Next</button>
+  <button type="button" class="btn-default bottomPrevBtn" (click)="prev()">Previous</button> 
+</footer>

@@ -1,0 +1,67 @@
+<app-angular></app-angular>
+<div class="main">
+  <button type="button" class="btn nextBtn" alignment="right" (click)="next()">Next</button>
+  <button type="button" class="btn-default prevBtn" alignment="left" (click)="prev()">Previous</button>
+</div>
+<div class="main">
+  <br><br>
+  <h2>Angular Input and Output</h2>
+  <br><br>
+  <b>1. @Input:</b> @Input TypeScript supports decorators (sometimes referred to as “annotations”)
+   which are used to declaratively add to or change an existing thing. <br>
+  This annotation is a way to ask Angular to automatically bind the value of the input variable into
+   the property variable. <br>
+  To define an input for a component, we use the @Input decorator.<br>
+  For example, our &lt;user-profile&gt; component needs a user argument to render information about that user:<br>
+  <div class="vl">
+    <pre><code>
+  &lt;user-profile [user]="currentUser"&gt;&lt;/user-profile&gt;
+ </code></pre></div>
+So, we add an @Input binding to user:<br>
+<div class="vl">
+  <pre><code> 
+import   {{ '{' }} Component, Input   {{ '}' }} from '@angular/core';
+ 
+@Component({{ '{' }}
+  selector: 'user-profile',
+  template: '&lt;div&gt;{{ '{' }}{{ '{' }}user.name{{ '}' }}{{ '}' }}&lt;/div&gt;'
+  {{ '}' }})
+export class UserProfile{{ '{' }}
+  @Input() user;
+  constructor(){{ '{' }}  {{ '}' }}
+  {{ '}' }}
+</code></pre></div>
+<hr>
+<b><i>Note:</i></b>Angular Recommended to use @Input() and @Output() Decorator. 
+instead of input and output properties Because It is easy to read and identify. 
+We can use private and public type also.
+<hr>
+
+ 
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<footer class="main">
+  <button type="button" class="btn bottomNextBtn" (click)="next()">Next</button>
+  <button type="button" class="btn-default bottomPrevBtn" (click)="prev()">Previous</button> 
+</footer>

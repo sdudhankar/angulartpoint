@@ -1,0 +1,115 @@
+<app-angular></app-angular>
+<div class="main">
+  <button type="button" class="btn nextBtn" alignment="right" (click)="next()">Next</button>
+  <button type="button" class="btn-default prevBtn" alignment="left" (click)="prev()">Previous</button>
+</div>
+<div class="main">
+  <br><br>
+  <h2>Angular Component Life Cycle</h2>
+  <br><br>
+  Lifecycle hooks are the way Angular allows you to add code that runs before or after each step of the directive lifecycle.
+  Angular calls lifecycle hook methods on directives and components as it creates, changes, and destroys them.
+  A component has a lifecycle managed by Angular. Angular creates it, renders it, creates and renders its children, 
+  checks it when its data-bound properties change, and destroys it before removing it from the DOM.<br>
+  Interface name : OnInit  <br>
+  Method name/ hook name: ngOnInit      (apply ng-> angular prefix) <br>
+  
+  No directive or component will implement all of the lifecycle hooks and some of the hooks only make sense 
+  for components. Angular only calls a directive/component hook method if it is defined.<br>
+
+  <img src="../assets/Angular/comLifeCycle.png" class="img-rounded" alt="Cinque Terre" width="300" height="250">
+In order to be notified about those events you<br>
+1. declare that your directive class implements the interface (optional)  and then <br>
+2. declare the ng method of the hook (e.g. ngOnInit) <br>
+When Angular knows that a component implements these functions, it will invoke them at the
+appropriate time <br><br>
+<b>1. ngOninit() :</b> Initialize the directive/component after Angular first displays the data-bound properties and sets the directive/component's input properties. Called once, after the first ngOnChanges().
+Angular finds and calls methods like ngOnInit(), with or without the interfaces.
+Nonetheless, it's good practice to add interfaces to TypeScript directive classes in order to benefit from strong typing and editor tooling.
+Use ngOnInit() for two main reasons: <br>
+1.    To perform complex initializations shortly after construction. <br>
+2.    To set up the component after Angular sets the input properties. <br>
+An ngOnInit() is a good place for a component to fetch its initial data. <br>
+<div class="vl">
+  <pre><code>
+import {{ '{' }}Component, OnInit{{ '}' }}
+@Component({{ '{' }}
+Selector: 'app-root',
+Template: ` ngOnInit gets call automatically after this component and directive gets render`
+  {{ '}' }})
+Export class AppComponent implements OnInit{{ '{' }}
+ngOnInit(){{ '{' }}
+Alert(“ngOnInit”);
+{{ '}' }}
+{{ '}' }}
+</code></pre></div>
+
+You can call any other method of the class also without creating object. 
+So that method gets called automatically (e.g. test()).<br>
+<div class="vl">
+  <pre><code>
+ngOnInit(){{ '{' }}
+Alert(“ngOnInit”);
+this.test();
+{{ '}' }}
+</code></pre></div>
+Angular finds and calls methods like ngOnInit(), with or without the interfaces.
+Nonetheless, it's good practice to add interfaces to TypeScript directive classes in order to benefit from strong typing and editor tooling.
+<br><br>
+<b>2. ngOnDestroy:</b> put cleanup logic in ngOnDestroy(), 
+the logic that must run before Angular destroys the directive. 
+when Angular2 removes the component from the DOM because you move away or 
+you call destroy() on a dynamically created component, then ngOnDestroy() is called.
+Its get called when we switch from one component to another (Navigation)
+<div class="vl">
+  <pre><code>
+ngOnDestroy(){{ '{' }}
+console.log(“Destroyed called” );
+{{ '}' }}
+</code></pre></div>
+<b>3. OnChanges: </b>
+The OnChanges hook is called after one or more of our component properties have been changed.<br>
+The ngOnChanges method receives a parameter which tells which properties have changed.<br><br>
+Parent Component<br>
+<div class="vl">
+  <pre><code>
+@Component({{ '{' }}
+  Selector: ‘iva-parent’,
+  Template: `&lt;iva-child [childBind]=”parentvariable”&gt; &lt;/iva-child&gt;`
+  {{ '}' }})
+   
+  Export class ApComponent
+  {{ '{' }}
+              sampleValue=30
+              Parentvariable={{ '{' }}sampleValue:this.sampleValue{{ '}' }}
+  {{ '}' }}
+</code></pre></div>
+Child Component
+<div class="vl">
+  <pre><code> 
+@Component({{ '{' }}
+Selector: ‘iva-child’,
+Template:
+{{ '}' }})
+ 
+Export class ApComponent
+{{ '{' }}
+          @Input()
+          childBind:any;
+ 
+          ngOnChanges (changes:SimpleChanges){{ '{' }}
+            console.log(JSON.stringify(changes))
+{{ '}' }}
+{{ '}' }}
+</code></pre></div> 
+
+
+
+
+
+
+</div>
+<footer class="main">
+  <button type="button" class="btn bottomNextBtn" (click)="next()">Next</button>
+  <button type="button" class="btn-default bottomPrevBtn" (click)="prev()">Previous</button> 
+</footer>

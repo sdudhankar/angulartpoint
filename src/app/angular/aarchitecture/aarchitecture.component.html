@@ -1,0 +1,53 @@
+<app-angular></app-angular>
+<div class="main">
+  <button type="button" class="btn nextBtn" alignment="right" (click)="next()">Next</button>
+  <button type="button" class="btn-default prevBtn" alignment="left" (click)="prev()">Previous</button>
+</div>
+<div class="main">
+  <br><br>
+  <h1>Angular Architecture</h1>
+  <br><br>
+  <figure>
+    <img src="../assets/Angular/architecture.jpg" class="img-rounded" alt="Angular Architecture" width="704" height="450">
+    <figcaption> Fig. Very Basic Angular Architecture.</figcaption>
+  </figure><br>
+  Angular is built upon components. The starting point of an Angular app is the bootstrapping of the initial 
+  parent component. Much like the html DOM tree that starts with an html element and then branches down from there,
+  Angular runs on a component tree model. After Angular loads the first component with the bootstrap call, 
+  it then looks within that component's html view and sees if it has any nested components. 
+  If so, Angular finds matches and runs the appropriate component code on those.
+  This repeats for each component down the tree.<br><br>
+  <figure>
+    <img src="../assets/Angular/architecture1.jpg" class="img-rounded" alt="Angular Architecture" width="704" height="350">
+  </figure><br>
+
+  You can even use components within components. This is where the component tree comes into play. 
+  Much like how you write html, creating nested elements within elements, you can build out your Angular apps by 
+  having components rendering components within their templates. Each component gets configured with a selector, 
+  which tells Angular what markup element tag to associate the component class logic with.
+  When you build a component in Angular, you are creating a support for a new custom element for the DOM.<br>
+  e.g.  &lt;app-root&gt;
+  <br><br>
+  The three main building blocks are the model, the controller, and the view.  In Figure A, you can see the
+  traditional exposition of the MVC pattern as it applies to server-side development.<br><br>
+  <figure>
+    <img src="../assets/Angular/traditional mvc.jpg" class="img-rounded" alt="Traditional MVC" width="704" height="160">
+    <figcaption>Fig A. - A Traditional way of implementing MVC pattern.</figcaption>
+  </figure><br>
+  But in the Angular the pitcure is slidly different. of course, Angular exists in the browser,
+   which leads to a twist on the MVC theme, as illustrated in Figure B.
+  <br><br>
+  <figure>
+    <img src="../assets/Angular/angular mvc.jpg" class="img-rounded" alt="Angular MVC" width="704" height="160">
+    <figcaption>Fig B. - The Angular implementation of MVC pattern.</figcaption>
+  </figure><br>
+
+  
+
+
+
+</div>
+<footer class="main">
+  <button type="button" class="btn bottomNextBtn" (click)="next()">Next</button>
+  <button type="button" class="btn-default bottomPrevBtn" (click)="prev()">Previous</button> 
+</footer>

@@ -1,0 +1,109 @@
+<app-angular></app-angular>
+<div class="main">
+  <button type="button" class="btn nextBtn" alignment="right" (click)="next()">Next</button>
+  <button type="button" class="btn-default prevBtn" alignment="left" (click)="prev()">Previous</button>
+</div>
+<div class="main">
+  <br><br>
+  <h1>Variables supports By Angular</h1>
+  <br><br>
+
+  <h2>Types of variable in Angular can support:</h2><br>
+  <h3>1. Class variable </h3>
+  <ul>
+    <li>Declare inside the class. </li>
+    <li>It can be private, public, protected.</li>
+    <li>By default is public.</li>
+    <li> <i><strong>this</strong></i> keyword use to access it.</li><br>
+  </ul>
+  <div class="vl">
+        <textarea highlight-js [options]="{}" [lang]="'typescript'">
+          public a:number=35;
+        </textarea>
+        </div>  
+  <br>
+  <h3>2. Local variable </h3>
+  <ul>
+      <li>Declare inside the method. </li>
+      <li>Declare by using <b>var</b> or <b>let</b> keyword.</li>
+      <li>By default is public.</li>
+      <li>Scope is limited to block only.</li><br>
+    </ul>
+      <div class="vl">
+          <textarea highlight-js [options]="{}" [lang]="'typescript'">
+              var name="john";
+let id=12345;
+          </textarea>
+          </div>
+    <br>
+    <h4>Difference between var and let</h4>
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Var</th>
+            <th>Let</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>scop is the nearest function block.</td>
+            <td>scop is to the nearest enclosing block(smaller than a function block).</td>
+          </tr>
+          <tr>
+            <td>Visible to the whole function.</td>
+            <td>Visible only in the for loop.</td>
+          </tr>
+          <tr>
+            <td>Allow to re-declare the same variable in the same scope.</td>
+            <td>Not Allow to re-declare the same variable in the same scope.</td>
+          </tr>
+        </tbody>
+      </table>
+  <br>
+  <div class="vl">
+      <textarea highlight-js [options]="{}" [lang]="'typescript'">
+          function allyIlliterate() {
+            for( let i = 0; i < 5; i++ ) {
+                    console.log(i); // 0 1 2 3 4 5
+            }
+            console.log(i); //i is *not* visible out here
+        }
+         
+        function byE40() {
+         
+            for( var j = 0; j < 5; j++ ) {
+               console.log(j); // 0 1 2 3 4 5
+            }
+            console.log(j); //j *is* visible out here
+        }        
+      </textarea>
+      </div>
+      <br>
+      <div class="info"> let is only visible in the for() loop and var is visible to the whole function.</div><br>
+  <h3>3. Static variable </h3>
+  <ul>
+      <li>Declare inside the class. </li>
+      <li>scope is throughout the class.</li>
+    </ul>
+          <div class="vl">
+              <textarea highlight-js [options]="{}" [lang]="'typescript'">
+                  static count=0;
+              </textarea>
+              </div>    
+  <br>
+  <button id="c" class="btn btn-primary blink_me"(click)="demo()">{{live ? 'Hide' : 'Check'}} Live Demo </button>
+  <div *ngIf="live">
+   <iframe
+   src="https://embed.plnkr.co/xJ73s17XENrNDOunb6M0/?show=app,preview"
+   frameborder="0"  width="100%"
+   height="480px"></iframe>
+  </div>
+  <br><br><br>
+
+
+
+            </div>
+<footer class="main">
+  <button type="button" class="btn bottomNextBtn" (click)="next()">Next</button>
+  <button type="button" class="btn-default bottomPrevBtn" (click)="prev()">Previous</button> 
+</footer>

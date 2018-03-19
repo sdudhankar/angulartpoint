@@ -1,0 +1,142 @@
+<app-angular></app-angular>
+<div class="main">
+  <button type="button" class="btn nextBtn" alignment="right" (click)="next()">Next</button>
+  <button type="button" class="btn-default prevBtn" alignment="left" (click)="prev()">Previous</button>
+</div>
+<div class="main">
+  <br><br>
+  <h1>Data Types supports By Angular</h1>
+  <br><br>
+There are two types of Data types <br>
+1. Built in<br>
+2. User Defined<br><br>
+<h2>Built in</h2>
+<b>Syntax:</b> [access specifier] variable name: Data type;
+
+<br><br>
+<h3>1. number: </h3>support integer & float value. It also supports hexadecimal, octal, binary number.<br><br>
+E.g.  
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">    
+a:number;                           //Declaration without initialization
+decimal: number = 6;                 // 6 
+hex: number = 0xf00d;              // 61453 
+binary: number = 0b101;         //5 
+octal: number = 0o744;           // 484 
+ </textarea></div>
+<br>
+<h3>2. string: </h3>For Character and Strings.<br><br>
+E.g. 
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+name: string = "Ajay is a good boy";
+name: string="Ajay" or name: string = 'Ajay' or name: string = `Ajay`;
+</textarea></div>
+<br>
+
+<h3>3. boolean: </h3>to check true or false value.<br><br>
+E.g.  
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">    
+male: Boolean = true;
+</textarea></div>
+<br>
+
+<h3>4. void: </h3>use as a return type in methods.<br><br>
+E.g. 
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+add():void
+{
+
+}
+</textarea></div>
+ <br>
+
+<h3>5. Bellowed are not data type but act as a data type to initialize value</h3><br>
+<b>i) null: </b>To indicate object is not pointing anywhere.<br><br>
+e.g. 
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">  
+var obj = new AppComponent();
+obj = null;
+</textarea></div>
+<br>
+
+<b>ii) undefined: </b>To indicate variable does not have value or not initialize.<br><br>
+e.g. 
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'"> 
+num: number = undefined;
+</textarea></div>
+<br>
+
+<button id="c" class="btn btn-primary blink_me"(click)="demo()">{{live ? 'Hide' : 'Check'}} Live Demo </button>
+<div *ngIf="live">
+ <iframe
+ src="https://embed.plnkr.co/LRMkuI0rthuee2EKFMjL/?show=app,preview"
+ frameborder="0"  width="100%"
+ height="480px"></iframe>
+</div>
+
+<br><br>
+<h2>User Defined</h2>
+<h3>1. Array: </h3>Stored collection of similar data type values.<br><br>
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">    
+list: number [] = [1 ,2 ,3];
+
+//Generic array type, Array<elemType>:
+list: Array<number>=[1 ,2 ,3]; 
+
+//in a JSON format
+list: any[]=[
+{ name: 'ajay', age: 21 },
+{ name: 'ajay', age: 21 }
+];
+</textarea></div>
+<br>
+<h3>2. Tuple:</h3> Declare like array but support different types of Data Types.<br><br>
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">    
+x: [string, number];
+
+//To access it in function:
+this.x = ["Hello",10]; 
+this.x = [10,"Hello"];  //error sequence matter
+this.x[0]              //hello
+</textarea></div><br>
+
+<h3>3. Enum:</h3> To define own data type. an enum is a way of giving more friendly names to sets of numeric values.<br><br>
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">    
+export enum color { Red, Green, Blue  }
+//Or 
+export enum color { Red=1, Green=2, Blue=4 }
+Let c:Color=Color:Green;
+</textarea></div><br>
+
+<div class="warning">
+    Make sure enum is act as a class so don’t declare as a variable inside the class. Enum must declare the outside class.
+    </div><br>
+<h3>4. Any:</h3> The Types of variables do not know at compile time and the value may be come from dynamic content
+ that time any data type is a best option.<br><br>
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">  
+notSure : any=4; 
+notSure = "may be string";
+notSure = false;
+</textarea></div><br>
+The any type is a powerful way to work with existing JavaScript.
+<br>
+<div class="warning">
+ if we don’t mention data type then by default 'any' is apply to that variable.
+</div>
+
+ 
+
+</div>
+<footer class="main">
+  <button type="button" class="btn bottomNextBtn" (click)="next()">Next</button>
+  <button type="button" class="btn-default bottomPrevBtn" (click)="prev()">Previous</button> 
+</footer>

@@ -1,0 +1,202 @@
+<app-angular></app-angular>
+<div class="main">
+  <button type="button" class="btn nextBtn" alignment="right" (click)="next()">Next</button>
+  <button type="button" class="btn-default prevBtn" alignment="left" (click)="prev()">Previous</button>
+</div>
+<div class="main">
+  <br><br>
+  <h2>Angular Router</h2>
+  <br><br>
+  <h3>Navigation & Routing basics</h3> <br>
+ 
+  In era of Web Development, routing is nothing but the splitting whole application into different areas.<br>
+  <b>Why do we need Routing? </b><br>
+Make separation of different areas of the app<br>
+Maintain the state in the app<br>
+Protect areas of the app based on certain rules<br><br>
+ 
+<b>How client-side & server-side routing works?</b><br>
+Client side: a server that accepts a request and routes to a controller and the controller runs a specific action, depending on the path and parameters.<br>
+server-side routing: the HTTP request comes in and the server will render<br>
+a different controller depending on the incoming URL.<br>
+In angular apps, we refer to them as “Single Page Apps” (SPA) because our server only gives us a single page and it’s our JavaScript that renders the different pages.<br>
+anchor tag as the client-side URL.<br>
+&lt;a href=” “ /&gt;<br><br>
+<h3>Components of Angular 2 routing</h3><br>
+There are three main components that we use to configure routing in Angular:<br>
+• Routes describes the routes our application supports<br>
+• RouterOutlet is a“placeholder”component that gets expanded to each route’s content<br>
+• RouterLink directive is used to link to routes<br><br>
+ 
+<b>Steps:</b><br>
+1.    Configure / import a route for each component.<br>
+2.    Define option/ action or button.<br>
+3.    Activating a route displays the component view.<br><br>
+ 
+<b>1. Configure / import a route for each component</b><br>
+i) Add base tag in index.html<br><br>
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+<a href="" /></a>
+</textarea></div>
+ii) import constants from the @angular/router package: (app.module.ts)<br>
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+import { RouterModule, Routes } from '@angular/router';
+</textarea></div><br><br> 
+
+iii) To define routes for our application, create a Routes configuration and 
+then use RouterModule.forRoot(routes) to provide our application with the dependencies necessary
+to use the router:<br><br>
+ 
+In app.module.ts<br>
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'"> 
+    import { RouterModule } from '@angular/router' ;
+    @NgModel({
+    import: [ RouterModule.forRoot([
+          { path: ' ', redirectTo: 'home', pathMatch: 'full' },
+          { path: 'home', component: HomeComponent },
+          { path: 'about', component: AboutComponent },
+          { path: 'contact', component: ContactComponent },
+          { path: 'empDetail/:Empid' , component: EmpComponent },
+          { path: 'contactus', redirectTo: 'contact' },
+      ])
+    ]
+    
+</textarea>
+</div> 
+<b>To use hash style route</b><br>
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+RouterModule.forRoot([], { useHash:true })
+</textarea></div> <br>
+<b>For wrong entered url</b><br>
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+{ path:'**', component: 'WelcomeComponent' }
+</textarea></div><br>
+Notice a few things about the routes:<br>
+• path specifies the URL this route will handle <br>
+• component is what ties a given route path to a component that will handle the route<br>
+• the optional redirectTo is used to redirect a given path to an existing route<br>
+
+<div class="info">
+When we use redirectTo on a route definition, it will tell the router that when we visit the path of the route, 
+we want the browser to be redirected to another route.
+</div>
+<h3>2. Navigating the Application Routes</h3><br>
+When we change routes, we want to keep our outer “layout” template and only substitute the “inner section” of the page 
+with the routes component.<br>
+To render the contents for each route, we use the RouterOutlet directive.<br>
+The router-outlet element indicates where the contents of each route component will be rendered<br>
+<div class="info">
+router-outlet directive is part of RouterModule in our NgModule.
+</div>
+In HTML	<br>
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'html'">
+    <a href="/#/home">Home</a>
+</textarea></div>
+But if we do this, we’ll notice that clicking the link triggers a page reload and that’s definitely not 
+what we want when programming single page apps.<br>
+To solve this problem, Angular 2 provides a solution that can be used to link to routes with no page reload:
+ the RouterLink directive.<br><br>
+ app.component.ts<br>
+ <div class="vl">
+    <textarea highlight-js [options]="{}" [lang]="'html'">
+        template: `
+        <nav>
+        <ul class='nav navbar-nav'>
+        <li><a [routerLink]="['home']">Home</a></li>
+        <li><a [routerLink]="['about']">About</a></li> or <a routerLink=’/about’>About</a>
+        <li><a [routerLink]="['contact']">Contact us</a></li>
+        </ul>
+        </nav> `       
+</textarea></div>
+<div class="info">
+On the right-hand side we have an array with the route path as the first element, <br>
+like "['home']" or "['about']" that will indicate which route to navigate to when we click the element.
+</div>
+<b>3. Activating a route displays the component view.</b><br>
+Put below tag in app.component.ts <br>
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+<router-outlet></router-outlet>
+</textarea></div>
+
+<h3>How to navigate anywhere</h3><br>
+component.html<br>
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+<button (click)="back()"> Go back</button>
+</textarea></div><br>
+Component.ts<br>
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+import { Router } from ‘@angular/router’;
+ 
+export class EmpDetailComponent
+{
+    constructor (private route:Router)
+    {
+    }
+    back():void
+    {
+        this.route.navigate([‘/home’]);
+    }
+}
+</textarea></div><br>
+<h3>How to pass value from one Route to another</h3><br>
+Step 1. Add path in module or router.ts file <br>
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+    {path: ‘emp/:id’  component:EmpDetailsComponent }
+</textarea></div><br>
+Step 2: empdetail.component.ts <br>
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+import { ActivateRoute } from ‘@angular/router’;
+ 
+export class EmpDetailsComponent
+{
+    id:number;
+    constructor(private activeRouter:ActivateRoute)
+    {
+        this.id=this.activeRouter.snapshot.param[‘id’];
+    }
+}
+</textarea><br>
+</div>
+empdetail.component.html
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+<h2>Output</h2>
+<p>{ { id }}</p>
+</textarea>
+</div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<footer class="main">
+  <button type="button" class="btn bottomNextBtn" (click)="next()">Next</button>
+  <button type="button" class="btn-default bottomPrevBtn" (click)="prev()">Previous</button> 
+</footer>

@@ -1,0 +1,241 @@
+<app-angular></app-angular>
+<div class="main">
+  <button type="button" class="btn nextBtn" alignment="right" (click)="next()">Next</button>
+  <button type="button" class="btn-default prevBtn" alignment="left" (click)="prev()">Previous</button>
+</div>
+<div class="main">
+  <br><br>
+  <h1>Angular Component</h1>
+  <br><br>
+
+  Angular is built upon components. Component is called as <strong>Heart</strong> of the Angular Development.
+   The starting point of an Angular app is the bootstrapping of the initial parent component.
+  Angular runs on a component tree model. <br><br>
+  Components are classes that  interact with the Template(.html file) of the component, which gets displayed on the browser.
+ Component deals with the view of application and logic of the page.
+  <br><br>
+  <h2>What Component Contain?</h2>
+  <figure>
+    <img src="../assets/Angular/component1.jpg" class="img-rounded" alt="component1" width="704" height="350">
+  </figure><br>
+As shown in above figure, Component is combination of Template, Class and Metadata.<br><br>
+<h3>1. Template:</h3>It Defines the View of the Application. only Template is the place where we can write HTML code.<br>
+There are two ways to define Template in class. <br>
+<b>i). template:</b> Write html code in the component itself without creating separate file.<br><br>
+<div class="vl">
+  <textarea highlight-js [options]="{}" [lang]="'typescript'">
+    import { Component } from '@angular/core';
+
+    @Component({
+      selector: 'app-root',
+      template: `<h1> Welcome to Website </h1>
+      <p> You are writing in template </p>
+      `,
+      styleUrls: ['./app.component.css']
+    })
+    export class AppComponent {
+    }
+  </textarea>
+  </div><br>
+<b>ii). templateUrl:</b> Creating separate .html file and supplying it's url. <br><br>
+The .html called app.component.html is as follows −
+<div class="vl">
+  <textarea highlight-js [options]="{}" [lang]="'html'">
+  <p>
+  Angular Component is working
+</p>
+  </textarea>
+  </div><br>  
+  The app.component.ts −
+<div class="vl">
+  <textarea highlight-js [options]="{}" [lang]="'typescript'">
+    import { Component } from '@angular/core';
+
+    @Component({
+      selector: 'app-root',
+      templateUrl: './app.component.html',
+      styleUrls: ['./app.component.css']
+    })
+    export class AppComponent {
+    }
+  </textarea>
+  </div><br>
+<h3>2. Class:</h3> Model or prototype of an object that describe the properties and behavior of an object called class.
+inside class you can declare variables and method. class is a group of objects that has common properties.<br><br>
+<div class="vl">
+  <textarea highlight-js [options]="{}" [lang]="'typescript'">
+    import { Component } from '@angular/core';
+
+    @Component({
+      selector: 'app-root',
+      templateUrl: './app.component.html',
+      styleUrls: ['./app.component.css']
+    })
+    export class AppComponent {
+      id:number = 101;
+      name:string = "Sherlock";
+      
+      constructor()
+      {
+      }
+
+      print():void
+      {
+        console.log("id: "+this.id);
+        console.log("name: "+this.name);
+      }
+    }
+  </textarea>
+  </div>
+<br><br>
+<h3>3. Metadata:</h3>
+Metadata is component decorator which added metadata and class follow it.
+<br><br>
+<b>Decorator:</b> A function that add metadata to a class, its member, or its method arguments. 
+Prefix with @, Angular provide built in decorator like @Component , you can create your own also.
+<br>
+
+<b>@Component:</b> this is component decorator. always declare above the class, do not end with semicolon, 
+decorator is a function so always add parenthesis (), we passed the object to the component function as an 
+indicate with curly braces {{'{'}} {{'}'}}.
+<br><br>
+<h4>How to use style sheet in Angular Component?</h4>
+A style sheet is useed to tells a browser how to render a page. 
+it Defines HTML page color, font, position and generally where and how something is presented.<br><br>
+There are two ways to define styles insides the component.<br>
+<h5>i). styles:</h5> Specifing styles in the component itself without creating separate file. <br>
+syntax: styles:[] <br><br>
+<div class="vl">
+  <textarea highlight-js [options]="{}" [lang]="'typescript'">
+    import { Component } from '@angular/core';
+
+    @Component({
+      selector: 'app-root',
+      template: `
+      <div>
+        <h2>Hello World</h2>
+      </div>
+    `,
+      styles:[ 'h2 {color:red}' ]
+    })
+    export class AppComponent {
+    }
+  </textarea>
+  </div>
+It uses square bracket ([]) to accepts multiple style sheets for single template.<br><br>
+
+<h5>ii). styleUrls:</h5>  Creating separate .css file and supplying it's url.<br><br>
+The .css called app.component.css is as follows −
+<div class="vl">
+  <textarea highlight-js [options]="{}" [lang]="'css'">
+ p {
+   color:red;
+}
+  </textarea>
+  </div><br>  
+  The app.component.ts −
+<div class="vl">
+  <textarea highlight-js [options]="{}" [lang]="'typescript'">
+    import { Component } from '@angular/core';
+
+    @Component({
+      selector: 'app-root',
+      templateUrl: './app.component.html',
+      styleUrls: ['./app.component.css']
+    })
+    export class AppComponent {
+    }
+  </textarea>
+  </div>
+<br><br>
+  <h2>Create component with CLI</h2>
+  Sometimes we don't want to create basic structures over and over again. 
+  So @angular/cli has a solution. Using generate function of ng we can create components without any labor.
+  <br><br>
+  <h3>Step 1:</h3>
+  <p style="background-color:#F0F0F0;">ng generate component &lt;name&gt;</p> 
+  or <br><br>
+  <p style="background-color:#F0F0F0;">ng g c &lt;name&gt;</p>
+  <br>
+  for example, If we want to create Welcome component;<br><br>
+  
+  <p style="background-color:#F0F0F0;">ng generate component welcome </p><br>
+  Will generate welcome folder in app folder and It will create ts, html, css and .spec.ts files automaticly. <br>
+ <b> welcome.component.css<br>
+  welcome.component.html<br>
+  welcome.component.spec.ts<br>
+  welcome.component.ts<br>
+  welcome.module.ts</b><br><br>
+  Also it will add declaration to <strong>app.module.ts.</strong> Basically it makes component ready to use.<br><br>
+  <h3>Step 2:</h3>
+  Implement Class, Template and Style according to your requirement.<br><br>
+  The .html called welcome.component.html is as follows −
+  <div class="vl">
+    <textarea highlight-js [options]="{}" [lang]="'typescript'">
+    <p>
+    Welcome Component is working.
+  { { name } }
+</p>
+    </textarea>
+    </div><br> 
+    The .css called welcome.component.css is as follows −
+    <div class="vl">
+      <textarea highlight-js [options]="{}" [lang]="'css'">
+     p {
+       color:red;
+     }
+      </textarea>
+      </div><br> 
+      The welcome.component.ts −
+      <div class="vl">
+        <textarea highlight-js [options]="{}" [lang]="'typescript'">
+          import { Component } from '@angular/core';
+      
+          @Component({
+            selector: 'app-welcome',
+            templateUrl: './app.component.html',
+            styleUrls: ['./app.component.css']
+          })
+          export class WelcomeComponent {
+            name: string = "Welcome in Angular World";
+          }
+        </textarea>
+        </div>
+      <br><br>
+  <h3>Step 3:</h3>
+  Inject the selector tag of the component where you want to add it(generally in parent component)
+  <br><br>
+  The .html called app.component.html is as follows −
+  <div class="vl">
+    <textarea highlight-js [options]="{}" [lang]="'html'">
+      <div>
+        <h2>Angular Main Component</h2>
+</div>
+    <app-welcome></app-welcome>
+    </textarea>
+    </div><br> 
+  Check live demo for how the welcome component is created and explore each file by clicking on file
+    <img src="../assets/Angular/file.gif" class="img-rounded" alt="file" width="50" height="30"> image.
+<br><br>
+  <button id="c" class="btn btn-primary blink_me"(click)="demo()">{{live ? 'Hide' : 'Check'}} Live Demo </button>
+  <div *ngIf="live">
+   <iframe
+   src="https://embed.plnkr.co/x46LWgB8gcR2HwvaLnb1/?show=app,preview"
+   frameborder="0"  width="100%"
+   height="480px"></iframe>
+  </div>
+  <br><br><br>
+
+
+
+
+
+
+
+
+
+</div>
+<footer class="main">
+  <button type="button" class="btn bottomNextBtn" (click)="next()">Next</button>
+  <button type="button" class="btn-default bottomPrevBtn" (click)="prev()">Previous</button> 
+</footer>

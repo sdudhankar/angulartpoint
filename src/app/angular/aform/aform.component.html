@@ -1,0 +1,289 @@
+<app-angular></app-angular>
+<div class="main">
+  <button type="button" class="btn nextBtn" alignment="right" (click)="next()">Next</button>
+  <button type="button" class="btn-default prevBtn" alignment="left" (click)="prev()">Previous</button>
+</div>
+<div class="main">
+  <br><br>
+  <h2>Angular Form</h2>
+  <br><br>
+
+
+  Form is an main aspect of your web Application. Form provide a rich data input from users.<br>
+  Uses: log in, submit, help request, place order, book a flight, schedule a meeting, etc.<br>
+   
+  Form Support: 2-way data binding change tracking, validation, error handling<br>
+  Angular 2 Form: it build an angular form with component & template.<br><br>
+   
+  <h3>2 Approach</h3>
+  1.    Template-Driven Approach <br>
+  2.    Data-Driven Approach<br><br>
+   
+  <h4>1. Template-Driven Approach</h4><br>
+   
+  2 Directives under FornModule: <br>
+  i. ngModel <br>
+  ii)ngForm<br><br>
+  Form is setup & configured in HTML code.<br>
+  Angular 2 ‘infers’ FormGroup from HTML code<br>
+  Form data is passed via ngSubmit()<br><br>
+   
+   
+   
+  <h4>2. Data-Driven/Model-Driven/Reactive form Approach</h4>
+   
+  2 Directives under ReactiveFornModule:<br>
+   i. formcontrol <br>
+   ii)formgroup<br><br>
+
+  Form is setup & configured in HTML code.<br>
+  Form is setup & configured programmatically in class body.<br>
+  Angular 2 is instructed to use the created FormGroup & not infer it.<br>
+  Form (data) can be used throughout class body without passing it via ngSubmit()<br>
+  
+ <h3> 1. Template-Driven Approach </h3>
+Step 1. Import '@angular/forms' in NgModel  of app.module.ts file.<br><br>
+Step 2. Use ngForm to submit our data.<br><br>
+we imported FormsModule, that makes NgForm available to our view.<br>
+ngForm: provide a FormGroup named ngForm and A (ngSubmit) output<br>
+we don’t have to add an ngForm attribute to use NgForm.<br><br>
+ 
+login.component.html <br>
+ 
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+<h1>Login</h1>
+<form #f=”ngForm” (ngSubmit)=”onSubmit(f.value)”>
+<div class=”form group”>
+<label>Enter username</label>
+<input type=”text” placeholder=”enter user name” id=”userid” name=”userid”  class=”form-control” required
+  #nameRef=”ngModel” ngModel>
+</div>
+ 
+<div [hidden]=”nameRef.valid || nameRef.pristine” class=”alert alert-danger”>  please enter a name</div>
+                        OR
+<div *ngIf=” ! nameRef.valid”> please enter a name</div>
+ 
+<div class=”form-group”>
+<label>Enter password</label>
+<input type=”password” placeholder=”enter password” class=”form-control” name=”password”  
+#pswRef =”ngModel” required ngModel >
+</div>
+<div [hidden] =” pswRef.valid || pswRef.pristine”> please enter a password</div>
+<button class=”btn btn-primary” [disabled]=”!f.form.valid”>submit</button>
+                        OR
+<button class=”btn btn-primary” [disabled]=”!f..valid”>submit</button>
+ 
+</div>
+</form>
+</textarea>
+
+<div class="info">
+<i>For best practice use hidden property of html instead of *ngIf.</i>
+</div>
+<br>
+Login.component.ts<br>
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+onSubmit(value:any){
+  console.log(value) or value.userid or value.password  these are name property of tag
+}
+</textarea> 
+<div class="info">
+  <i>If ngForm is used, all the input fields which has [(ngModel)] must have an attribute name with a value.</i><br>
+&lt;input [(ngModel)]=”firstname” name=”something”&gt;
+</div><br>
+ 
+We bind to the ngSubmit action of our form by using the syntax: (ngSubmit)="onSubmit(f.value)".<br>
+• (ngSubmit) - comes from NgForm<br>
+• onSubmit() - will be implemented in our component definition class (below).onSubmit is method you can give any name<br>
+• f.value - f is the FormGroup that we specified above. And .value will return the key/value.<br><br>
+pairs of this FormGroup<br>
+“when I submit the form, call onSubmit on my component
+instance, passing the value of the form as the arguments”.<br>
+
+<h3>input & NgModel</h3><br>
+attach input tag by adding this sort of attribute: ngModel="whatever".
+ In this case, we specify ngModel with no attribute value.<br>
+ 
+we us ngModel with no attribute value we are specifying:<br>
+1. a one-way data binding<br>
+2. we want to create a FormControl on this form with the name sku (because of the name attribute on the input tag)<br><br>
+ 
+<b>NgModel vs. ngModel: what’s the difference?</b><br>
+Generally, when we use PascalCase, like
+NgModel, we’re specifying the class and referring to the object as it’s defined in code. The
+lower case (CamelCase), as in ngModel, comes from the selector of the directive and it’s
+only used in the DOM / template.
+It’s also worth pointing out that NgModel and FormControl are separate objects. NgModel
+is the directive that you use in your view, whereas FormControl is the object used for
+representing the data and validations in your form.<br><br>
+
+<h3>To send Whole form properties (as Object)</h3><br>
+Login.html<br>
+<textarea highlight-js [options]="{}" [lang]="'typescript'"> 
+<form #f=”ngForm” (ngSubmit)=”sendYourData(f)”>
+</textarea>
+Login.ts
+<textarea highlight-js [options]="{}" [lang]="'typescript'"> 
+sendYourData(value:NgForm)
+{
+               Console.log(value); or value.form.value or value.form.value.userid
+}
+</textarea>
+<samp>
+Output: <br>
+controls: Form control to each tag<br>
+Valid:true
+Value:Object<br>
+       Id:Sachin<br>
+       Pass:123<br>
+      </samp>
+ 
+<h3>To Send Value Only (as a value)</h3>
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+<form #f=”ngForm” (ngSubmit)=”sendYourData(f.value)”>
+</textarea>
+  <br>
+
+Login.ts<br>
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+sendYourData(value:any)
+{
+               Console.log(value);
+}
+</textarea>
+ <samp>
+Output:<br>
+       Id:Sachin<br>
+       Pass:123<br>
+      </samp>
+
+ <br>
+<h3>Default value with ngModel (one Way)</h3><br>
+Use ngModel one way or property binding<br><br>
+1.     As a javaScript object<br>
+<textarea highlight-js [options]="{}" [lang]="'javascript'">
+User = {
+Userid:”Sachin”,
+Password:” ”
+}
+</textarea>
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+onSubmit(value:NgForm)
+{
+   Console.log(this.user);
+}
+ </textarea><br>
+ In login.html<br>
+ <textarea highlight-js [options]="{}" [lang]="'typescript'">
+<input [ngModel]=”user.userid”>
+ </textarea><br>	
+2.     As a Declaring variables<br>
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+<input [(ngModel)]=”user.userid” >
+</textarea><br>
+You can update value as well as you can able to see reflect value.<br>
+ 
+Form Groups Template Driven<br>
+ 
+NgModelGroup use to group the same kind of property to in one object.<br><br>
+<textarea highlight-js [options]="{}" [lang]="'html'">
+<div ngModelGroup=”Address” >
+               <div  class=”form-group”>
+               <label>Address</label>
+               <input type=”text” name=”area” [(ngModel)]=”area” />
+               </div>
+               <div  class=”form-group”>
+               <label>Pincode</label>
+               <input type=”text” name=”pincode” [(ngModel)]=”pincode” />
+               </div>
+</div>
+</textarea><br>
+.ts file<br>
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+OnSubmit(value:NgForm)
+{
+               Console.log(value.value);
+
+}
+ 
+</textarea>
+<br>
+<h2>Reactive Form Module</h2><br>
+1. Add ReactiveFormsModule in app.module.ts<br>
+<textarea highlight-js [options]="{}" [lang]="'typescript'">	
+import { ReactiveFormsModule } from ‘@angular/forms;
+               .
+               .
+imports:[ ReactiveFormsModule..]
+ </textarea><br>
+2. import FormGroup & FormControl classes in component.ts file<br>
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+import { FormControl,FormGroup } from ‘@angular/forms;
+ </textarea><br>
+3.     Create Object of FormGroup & add FormControls inside the FormGroup as a parameter in ({{ '{' }} {{ '}' }})<br>
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+export class login
+{
+   myForm=new FormGroup( {
+   userid : new FormControl(),
+password : new FormControl()
+})
+ 
+onSubmit(user : FormGroup)
+{
+       Console.log(user.value) or user.value.userid
+}
+}
+ </textarea><br>
+4.     Add form in login.html with [formGroup] property to control form and formControlName to control the input value.<br>
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+<form [formGroup] = “myForm” (ngSubmit)=” onSubmit(myForm)”>
+<div>
+<div class = “form-group”>
+<label>Enter UserName</label>
+<input type=”text” class=”form-control” formControlName=”userid” />
+<div [hidden] ="myForm.controls.userid.valid ||  myForm.controls.userid.pristine">Please enter user id</div>
+</div>
+ 
+<label>Enter Password</label>
+<input type=”password” class=”form-control” formControlName=”password” />
+<div [hidden]="myForm.controls.password.valid || myForm.controls.password.pristine">Please enter user id</div> 
+<button [disabled]=”!myForm.valid”>Submit</button>
+</form>
+ </textarea><br>
+ <h2>Validators</h2><br>
+ 
+FormControl class accepts 3 parameter<br>
+1.     Default value<br>
+2.     Validators<br>
+3.     Synch<br><br>
+ 
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+import Validators from @angular/forms
+ 
+myForm=new FormGroup( {
+   userid : new FormControl(“Sachin”, Validators.required),
+password : new FormControl(“ “, [ Validators.required, Validators.minLength(5)])
+})
+</textarea>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<footer class="main">
+  <button type="button" class="btn bottomNextBtn" (click)="next()">Next</button>
+  <button type="button" class="btn-default bottomPrevBtn" (click)="prev()">Previous</button> 
+</footer>

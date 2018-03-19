@@ -1,0 +1,80 @@
+<app-angular></app-angular>
+<div class="main">
+  <button type="button" class="btn nextBtn" alignment="right" (click)="next()">Next</button>
+  <button type="button" class="btn-default prevBtn" alignment="left" (click)="prev()">Previous</button>
+</div>
+<div class="main">
+  <br><br>
+  <h1>Strings in Angular</h1>
+  <br><br>
+  In ES6 new template strings were introduced.<br>
+  1. Variables within strings <br>
+  2. Multi-line strings <br><br>
+
+<h2>1. Variables in strings</h2><br>
+This feature is also called "string interpolation." The idea is that you can put variables right in your
+strings. Here’s how: <br>
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+export class AppComponent{
+firstName:string="John";  
+test(){
+        var lastName = "Bosh"; 
+        var greeting=`Hello ${this.firstName} ${ lastName}`;
+        console.log(greeting); 
+      }
+  }
+var obj=new AppComponent();
+obj.test();
+</textarea>
+</div>
+<p style="background-color:#F0F0F0;">output: Hello John Bosh</p>
+
+<div class="warning">
+To use string interpolation you must enclose your string in backtick (``) not single or double quotes.
+</div>
+<h2>2. Multiline strings</h2>
+Another great feature of backtick(``)  strings is multi-line strings <br><br>
+single or double quotes for one line is allow <br>
+<div class="vl">
+    <textarea highlight-js [options]="{}" [lang]="'html'">
+       template:"<h1>Hello</h1>"
+</textarea>
+</div>
+   
+single or double quotes for multi line is not allow <br>
+<div class="vl">
+    <textarea highlight-js [options]="{}" [lang]="'html'">
+        template:" <h1> 
+            Hello</h1>"
+</textarea>
+</div>
+<h3>Example of Multi line Strings</h3>
+<div class="vl">
+    <textarea highlight-js [options]="{}" [lang]="'typescript'">
+        import { Component, OnInit } from '@angular/core';
+        @Component({
+          selector: 'app-test',
+          template:`<div>
+          <h1>Hello</h1>
+          <p>This is a multiline String</p>
+          </div>
+          `,
+          styleUrls: ['./test.component.css']
+          })
+          export class AppComponent{  
+
+          } 
+    </textarea>
+    </div>
+
+  
+<div class="info">
+double or single quotes can not split string in multiline. you must enclose your string in backtick (``).
+</div>
+
+</div>
+<footer class="main">
+  <button type="button" class="btn bottomNextBtn" (click)="next()">Next</button>
+  <button type="button" class="btn-default bottomPrevBtn" (click)="prev()">Previous</button> 
+</footer>

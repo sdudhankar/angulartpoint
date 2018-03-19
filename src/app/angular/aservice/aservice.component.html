@@ -1,0 +1,85 @@
+<app-angular></app-angular>
+<div class="main">
+  <button type="button" class="btn nextBtn" alignment="right" (click)="next()">Next</button>
+  <button type="button" class="btn-default prevBtn" alignment="left" (click)="prev()">Previous</button>
+</div>
+<div class="main">
+  <br><br>
+  <h2>Angular Service</h2>
+  <br><br>
+  <b>Problem in Component</b> <br>
+  1.    Code Duplication <br>
+  2.    Hard to maintain.<br>
+  <div class="container">
+  <table class="table table-bordered ">
+  <tr>
+      <th>Comonent 1</th>
+      <td>doSomething()</td>
+  </tr>
+  <tr>
+      <th rowspan="2">Component 2</th>
+      <td>doExtra()</td>
+  </tr>
+  <tr>
+    <td>doSomething()</td>
+  </tr>
+  <tr>
+      <th>Component 3</th>
+      <td>doSomething()</td>
+    </tr>
+  </table>
+</div>
+  for example. Component 1	have a function doSomething() whereas Component 2	has same function doSomething() and some
+  additional function doExtra() and again Component 3	has doSomething() function. so unnecesarily we are making 
+  dublicate function for same work. <br><br>
+  <b>What will be the solution for this?</b><br>
+  Centralized this task or function by using Service.<br><br>
+  
+  <h3>Service</h3><br>
+ <b> "A class with a focused purpose."<br>
+  "Logic/data which is not specific to view & want to share across component for that we build service."</b>
+   <br><br>
+  <b>Use for:</b><br>
+  i)  Are independent from any particular component. <br>
+  ii) Provide shared data or logic across component<br>
+  iii) Encapsulate external interactions such as data Access.<br><br>
+   
+  So shifting all this work from component to service it helps to test, debugged & reused.<br><br>
+   
+  <b>Process to Create Service: </b>(same as component) <br>
+  1.    Build the Service: create service class. <br>
+  2.    Registering the Service: Define Metadata with decorator. <br>
+  3.    Injecting the service: import what we need.<br><br>
+  
+There are 2 way component can work with services <br>
+<b>1. Creating instance of service class & use it. </b><br><br>
+ 
+i)  Service<br>
+<div class="vl">
+    <pre><code>
+  export class myService
+  {{ '{' }}
+  {{ '}' }}
+  </code></pre></div>
+ii) Component<br>
+<div class="vl">
+    <pre><code>
+Let svc=new myService();
+</code></pre></div>
+<br>
+<b>Drawback:</b> instances are local to component & difficult to test.<br><br>
+<b>2. Register service with Angular </b>
+<img src="../assets/Angular/di.gif" class="img-rounded" alt="Dependency Injection" width="754" height="400"><br><br>
+
+•  Here angular create single instance of that service class e.g. log, math, svc instance called singleton.<br>
+•  specifically angular provide built in injector. We register service with angular injector, which maintain container of created service instance.<br>
+•  if component, require service it use as a dependency.<br>
+•  Angular provide/Inject service class instance when component class instantiated this process is called dependency injection.<br>
+ <br>
+
+
+</div>
+<footer class="main">
+  <button type="button" class="btn bottomNextBtn" (click)="next()">Next</button>
+  <button type="button" class="btn-default bottomPrevBtn" (click)="prev()">Previous</button> 
+</footer>

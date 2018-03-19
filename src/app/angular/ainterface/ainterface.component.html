@@ -1,0 +1,99 @@
+<app-angular></app-angular>
+<div class="main">
+  <button type="button" class="btn nextBtn" alignment="right" (click)="next()">Next</button>
+  <button type="button" class="btn-default prevBtn" alignment="left" (click)="prev()">Previous</button>
+</div>
+<div class="main">
+  <br><br>
+  <h2>Angular Interface</h2>
+  <br><br>
+  <ul>
+  <li>an interface defines the syntax that any entity must adhere to.</li><br>
+  <li>Interfaces define properties, methods, and events, which are the members of the interface.</li> <br>
+  <li>Interfaces contain only the declaration of the members.</li><br>
+  <li>It is the responsibility of the deriving class to define the members.</li><br>
+  <li>It often helps in providing a standard structure that the deriving classes would follow.</li><br>
+</ul> 
+  Declaring Interfaces <br>
+  The interface keyword is used to declare an interface. Here is the syntax to declare an interface –<br>
+  Syntax:<br>
+  <div class="vl">
+    <pre><code> 
+  interface interface_name{{ '{' }}
+  {{ '}' }}
+   </code></pre></div>
+  <br>
+  Where we can use interface?
+   <br>
+   <div class="vl">
+    <pre><code>  
+  emp : any[] =[  {{ '{' }}
+  name:'sachin',
+  surname:'Dudhankar',
+  age: 24
+  {{ '}' }},
+  {{ '{' }}
+  name:'Akshay',
+  surname:'Choudhary',
+  age: 23
+  {{ '}' }}
+  ]
+  </code></pre></div><br>
+  Above emp array doesn’t support strong data type. 
+  So any individual value can accept any data.  
+  so convert above array into strong Data type we will use interface.<br>
+ 
+  Create separate file iemp.ts <br>
+  or using Angular CLI<br><br>
+  <p style="background-color:#F0F0F0;"> ng g i iemp </p><br><br>
+  <div class="vl">
+    <pre><code>
+  export interface IEmp
+  {{ '{' }}
+        name: string;
+        surname: string;
+        age: number 
+ {{ '}' }}
+  </code></pre></div><br>
+  You can implement it also in same file.<br>
+  <div class="vl">
+    <pre><code>
+  export class Emp implements IEmp
+  {{ '{' }}
+  Constructor(public name:string, public surname:string, public age:number)
+  {{ '{' }}
+  {{ '}' }}
+  {{ '}' }}
+  </code></pre></div>
+  employee.component.ts <br>
+  <div class="vl">
+    <pre><code> 
+  import  {{ '{' }} IEmp  {{ '}' }} from ‘.\empInterface’;
+  //Change the data type from any to interface name
+  Emp:IEmp[] = [  {{ '{' }} ….  {{ '}' }} ]
+  </code></pre></div>
+   
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<footer class="main">
+  <button type="button" class="btn bottomNextBtn" (click)="next()">Next</button>
+  <button type="button" class="btn-default bottomPrevBtn" (click)="prev()">Previous</button> 
+</footer>

@@ -1,0 +1,67 @@
+<app-angular></app-angular>
+<div class="main">
+  <button type="button" class="btn nextBtn" alignment="right" (click)="next()">Next</button>
+  <button type="button" class="btn-default prevBtn" alignment="left" (click)="prev()">Previous</button>
+</div>
+<div class="main">
+  <br><br>
+  <h1>Angular Directory Structure</h1>
+  <br><br>
+
+<h2>Application structure and Angular modules</h2>
+ 
+<ul>
+<li>All of the app's code goes in a folder named src. All feature areas are in their own folder, with their own Angular module.</li>
+<li>All content is one asset per file. Each component, service, and pipe is in its own file. </li>
+<li>All third party vendor scripts are stored in another folder and not in the src folder. Use the naming conventions for files.</li>
+<li>Keep a flat folder structure as long as possible.</li>
+<li>Consider creating sub-folders when a folder reaches seven or more files.</li>
+<li>Consider configuring the IDE to hide distracting, irrelevant files such as generated .js and .js.map files.</li>
+<li>Creating a folder for a component when it has multiple accompanying files (.ts, .html, .css and .spec).</li>
+<li>Create folders named for the feature area they represent.</li>
+<li>Create an Angular module for each feature area.</li>
+<li>Create an Angular module in the app's root folder (e.g., in /src/app).</li>
+<li>Naming the root module app.module.ts.</li>
+<li>Do not provide services in shared modules. Services are usually singletons that are provided once for the entire application or in a particular feature module.</li>
+</ul>
+
+<figure>
+<img src="../assets/Angular/dirstr.png" class="img-rounded" alt="dirstr" width="340" height="250">
+</figure>
+<h2>All configuration files with meaning</h2>
+<figure>
+<img src="../assets/Angular/dirstr1.png" class="img-rounded" alt="dirstr1" width="404" height="750"><br><br>
+</figure>
+<ol>
+<li><b>Package.json: </b>Contain all packages and its versions that our app’s required. These packages install and maintained with npm.</li>
+<li><b>Systemjs.config: </b>module loader that can import modules at run time in any of the popular formats used today (CommonJS, UMD, AMD, ES6).</li>
+<li><b>tsconfig.json: </b>TypeScript compiler configuration file. It guides the compiler to generate JavaScript files.</li>
+<li><b>module.ts: </b>help organize an application into cohesive blocks of functionality. An Angular Module is a class adorned with the @NgModule decorator function. @NgModule takes a metadata object that tells Angular how to compile and run module code. It identifies the module's own components, directives and pipes, making some of them public so external components can use them.</li>
+<li><b>component.ts: </b>Template(view layout, created with HTML, includes binding & directives) Class (code supporting view, created with typescript, properties, method) Metadata:  Extra data for angular, define with decorator(selector:).</li>
+<li><b>main.ts: </b>the file that bootstraps (start) your Angular 2 application.</li>
+<li><b>angular-cli.json: </b>A configuration file for the angular command line interface.</li>
+<li><b>Karma.confi.json: </b>A configuration script for the Karma testing framework. You can use Karma to run your *.spec.ts files on multiple browsers.</li>
+<li><b>protractor.conf.js: </b>A configuration file for the Protractor end-to-end testing framework. End-to-end testing allows you to test your app by mimicking a user interacting with it. You’ll use this with your tests found in the e2e directory.</li>
+<li><b>tslint.json: </b>it’s a static analysis tools for typescript code.</li>
+<li><b>README.md: </b>A place to describe your project.</li>
+<li><b>favicon.ico: </b>The icon that will show in the browser tab.</li>
+<li><b>index.html: </b>The html file that the browser will load. In this file you’ll see the `app-root` tag, which is where your bootstrapped Angular 2 application will load.</li>
+<li><b>polyfills.ts: </b>This loads some code that Angular 2 needs to run on all browsers. Add features which are not support by JavaScript to Angular.</li>
+<li><b>styles.css: </b>You can use this for global styles.</li>
+<li><b>test.ts: </b>A test file for running Karma tests.</li>
+<li><b>typings.d.ts: </b>A configuration file for Typings. Typings is a useful tool for adding javascript libraries to your typescript project.</li>
+<li><b>app: </b>Your actual Angular 2 application source!</li>
+<li><b>assets: </b>A place for you to put static assets such as images, icon, text file, etc.</li>
+<li><b>environments: </b>Environments configuration files used by angular-cli, here we store configuration setting of different environment.</li>
+<li><b>.editorconfig: </b>Editor configuration. While working in team all developer should use same setting.</li>
+<li><b>.gitignore: </b>excluding files from Git repository. Managing and versioning source code.</li>
+</ol>
+
+
+
+
+</div>
+<footer class="main">
+  <button type="button" class="btn bottomNextBtn" (click)="next()">Next</button>
+  <button type="button" class="btn-default bottomPrevBtn" (click)="prev()">Previous</button> 
+</footer>

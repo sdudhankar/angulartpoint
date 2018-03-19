@@ -1,0 +1,108 @@
+<app-angular></app-angular>
+<div class="main">
+  <button type="button" class="btn nextBtn" alignment="right" (click)="next()">Next</button>
+  <button type="button" class="btn-default prevBtn" alignment="left" (click)="prev()">Previous</button>
+</div>
+<div class="main">
+  <br><br>
+  <h2>Angular Dependency Injection</h2>
+  <br><br>
+
+
+<h3>Dependency Injection (DI or IOC (inversion of control).</h3><br>
+ 
+A coding pattern in which a class receives the instances of objects it needs 
+(called dependencies) from an external source (angular injector) rather than creating them itself.<br>
+
+<b>1. Build the Service:</b> create service class.<br> 
+How to generate service using CLI <br>
+ng generate service log <br>
+or <br>
+ng g s log <br>
+          or <br>
+create new file log-interface <br>
+ 
+<div class="vl">
+    <pre><code>
+import {{ '{' }} Injectable {{ '}' }} from '@angular/core';
+import {{ '{' }} IEmp {{ '}' }} from 'empInterface';
+ 
+@Injectable()
+ 
+export class EmpService
+{{ '{' }}
+      getEmp():IEmp[]
+      {{ '{' }}
+           return [{{ '{' }}                                   
+              name:'sachin',
+              surname:'Dudhankar',
+              age: 24
+              {{ '}' }},
+              {{ '{' }}
+              name:'Akshay',
+              surname:'Choudhary',
+              age: 23
+              {{ '}' }}
+            ];
+      {{ '}' }}
+{{ '}' }}
+</code></pre></div>
+
+<b>2. Registering the Service:</b> Define Metadata with decorator.<br>
+Registering a service can we achieve in two way:<br><br>
+<b>i) Register with component : </b>child component can also access. <br>
+<div class="vl">
+    <pre><code>
+@Component({{ '{' }}
+selector: 'iva-app',
+template: `Hi`,
+providers:[EmpService]
+{{ '}' }})
+ </code></pre></div>
+ <br>
+<b>ii) Register with app.module: </b>accessible in all application. <br>
+<div class="vl">
+    <pre><code>
+@NgModule({{ '{' }}
+providers: [EmpService],
+{{ '}' }})
+</code></pre></div>
+<br>
+<b>3. Injecting the service: </b>import what we need.<br>
+<div class="vl">
+<pre><code>
+constructor( private _empService:EmpService)
+{{ '{' }}
+{{ '}' }}
+ngOnInit()
+{{ '{' }}
+    this.emp=this._empService.getEmp();
+{{ '}' }}
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<footer class="main">
+  <button type="button" class="btn bottomNextBtn" (click)="next()">Next</button>
+  <button type="button" class="btn-default bottomPrevBtn" (click)="prev()">Previous</button> 
+</footer>

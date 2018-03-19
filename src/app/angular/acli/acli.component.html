@@ -1,0 +1,201 @@
+<app-angular></app-angular>
+<div class="main">
+  <button type="button" class="btn nextBtn" alignment="right" (click)="next()">Next</button>
+  <button type="button" class="btn-default prevBtn" alignment="left" (click)="prev()">Previous</button>
+</div>
+<div class="main">
+  <br><br>
+  <h1>Project Setup</h1>
+  <br><br>
+  To install Angular, the Angular team came up with Angular CLI which eases the installation.
+   You just need to run through a few commands to install Angular.<br><br>
+<h2>Angular CLI Installation step by step</h2>
+ 
+  <b>step 1:</b> Open Command Prompt <br><br>
+  Press window  button + R and type cmd <br><br>
+  <figure>
+  <img src="../assets/Angular/cmd.jpg" class="img-rounded" alt="cmd" width="404" height="250">
+</figure><br>
+  <b>step 2:</b> Go to the directory where you want to install application.<br><br>
+  <p style="background-color:#F0F0F0;">npm install -g @angular/cli </p>
+  <figure>
+  <img src="../assets/Angular/npm install.gif" class="img-rounded" alt="npm install" width="704" height="400">
+</figure><br>
+  <b>step 3:</b> To create New Project with directory and files <br><br>
+  <p style="background-color:#F0F0F0;">ng new PROJECT-NAME</p> 
+ <figure>
+  <img src="../assets/Angular/ng new.gif" class="img-rounded" alt="ng new" width="604" height="400">
+</figure><br>
+ <div class="warning">
+  PROJECT-NAME is a name of your application.
+</div>
+  <b>step 4:</b> Go to the project folder. <br><br>
+  <p style="background-color:#F0F0F0;">cd PROJECT-NAME</p>
+ <figure>
+  <img src="../assets/Angular/project folder.gif" class="img-rounded" alt="project folder" width="604" height="400">
+</figure><br>
+  <b>step 5:</b> Deploy the Project <br><br>
+  <p style="background-color:#F0F0F0;">ng serve</p>
+ <figure>
+  <img src="../assets/Angular/ng serve.gif" class="img-rounded" alt="ng serve" width="604" height="400">
+</figure><br>
+  <b>step 6:</b> Check the output<br><br>
+  <p style="background-color:#F0F0F0;">open the browser and type localhost:4200</p> <br>
+ <figure> 
+  <img src="../assets/Angular/browser.gif" class="img-rounded" alt="browser" width="604" height="400">
+</figure>
+<div class="warning">
+If any other application is running on same port or you want to forcefully run the application 
+  on different port use the below command.<br>
+  ng serve --port 1234   <br>
+  OR <br>
+  ng serve -p 1234<br>
+  Here 1234 is port number you can give any 4 digit number.
+</div>
+
+<h2>Investigating created project</h2>
+<b>Open your created project in Visual Studio IDE</b><br><br>
+<figure> 
+  <img src="../assets/Angular/vs open.gif" class="img-rounded" alt="vs open" width="604" height="500">
+</figure>
+
+<b>The basic directory structure of the project</b><br><br>
+<figure> 
+  <img src="../assets/Angular/angDir.jpg" class="img-rounded" alt="angular directives" width="504" height="600">
+</figure>
+<p>
+  After opening project folder we can see e2e folder, node_modules, src folder, and some files. 
+  All our project source stuff are in <strong>src folder</strong>. Other files contains information about configurations, 
+  required packages etc. We will check details of all in Application Structure. <br><br>
+
+Inside of src folder there are multiple files. The most important file in this folder is <strong>index.html</strong> file. 
+This file is the main point of our project. If you open it you will see something like this.
+</p>
+<div class="vl">
+  <textarea highlight-js [options]="{}" [lang]="'HTML'">
+    <!doctype html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Ang4</title>
+      <base href="/">
+    
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="icon" type="image/x-icon" href="favicon.ico">
+    </head>
+    <body>
+      <app-root>Loading...</app-root>
+    </body>
+    </html>
+  </textarea>
+</div>
+
+If we check above index file, we can see there is one special tag which aren't part of HTML standards.
+ It's app-root element.
+<br>
+If you check app folder. Go dive into <strong>app.component.ts</strong> file.<br><br>
+<div class="vl">
+  <textarea highlight-js [options]="{}" [lang]="'typescript'">
+    import { Component } from '@angular/core';
+
+    @Component({
+      selector: 'app-root',
+      templateUrl: './app.component.html',
+      styleUrls: ['./app.component.css']
+    })
+    export class AppComponent {
+      title = 'app works!';
+    }
+  </textarea>
+  </div>
+  As you can see there is some property selector app-root under @Component.
+  In angular components will bind to element that given as selector. 
+  Selector is kind of like css element selector. <br>
+
+templateUrl property routes component's template location where you can write your HTML code. 
+You can use <strong>template property</strong> too if you don't want to create html file.<br><br>
+
+<div class="vl">
+  <textarea highlight-js [options]="{}" [lang]="'typescript'">
+    import { Component } from '@angular/core';
+
+    @Component({
+      selector: 'app-root',
+      template: `
+        <h1> Welcome to AngulartPoint.com </h1>
+      `,
+      styleUrls: ['./app.component.css']
+    })
+    export class AppComponent {
+    }
+  </textarea>
+  </div>
+  
+  styleUrls property shows us component's css file location. 
+  You can also use <strong>styles</strong> too if you don't want to create separate css file.
+  Only the difference between template and styles, styles is expecting an array of string, not directly string. 
+  it means you can supply more than one styleUrls if you need it.
+<br><br>
+<div class="vl">
+  <textarea highlight-js [options]="{}" [lang]="'typescript'">
+    import { Component } from '@angular/core';
+
+    @Component({
+      selector: 'app-root',
+      template: `
+        <b>Welcome to AngulartPoint.com</b>
+      `,
+      styles: [
+          `h1 {
+              color: red;
+          }`
+      ]
+    })
+    export class AppComponent {
+    }
+  </textarea>
+  </div>
+ <br> 
+ <button id="c" class="btn btn-primary blink_me"(click)="demo()">{{live ? 'Hide' : 'Check'}} Live Demo </button>
+<div *ngIf="live">
+ <iframe
+ src="https://embed.plnkr.co/0bnMJFMnCWSrqJrJpVZK/?show=app,preview"
+ frameborder="0"  width="100%"
+ height="480px"></iframe>
+</div>
+<br><br>
+  In angular projects works under modules. These modules look like java packages or c# namespaces. 
+  Your components defined in a module. <strong>app.module.ts</strong> file contains our main module.
+<br><br>
+<div class="vl">
+  <textarea highlight-js [options]="{}" [lang]="'typescript'">
+    import { BrowserModule } from '@angular/platform-browser';
+    import { NgModule } from '@angular/core';
+    import { FormsModule } from '@angular/forms';
+    import { HttpModule } from '@angular/http';
+    
+    import { AppComponent } from './app.component';
+    
+    @NgModule({
+      declarations: [
+        AppComponent
+      ],
+      imports: [
+        BrowserModule,
+        FormsModule,
+        HttpModule
+      ],
+      providers: [],
+      bootstrap: [AppComponent]
+    })
+    export class AppModule { }
+  </textarea>
+  </div>
+  
+  All components that using in this project should declared in this file.
+  If we don't declare it, angular couldn't find component that we want to use.
+</div>
+<footer class="main">
+  <button type="button" class="btn bottomNextBtn" (click)="next()">Next</button>
+  <button type="button" class="btn-default bottomPrevBtn" (click)="prev()">Previous</button> 
+</footer>

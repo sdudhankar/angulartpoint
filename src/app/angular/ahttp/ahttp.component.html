@@ -1,0 +1,250 @@
+<app-angular></app-angular>
+<div class="main">
+  <button type="button" class="btn nextBtn" alignment="right" (click)="next()">Next</button>
+  <button type="button" class="btn-default prevBtn" alignment="left" (click)="prev()">Previous</button>
+</div>
+<div class="main">
+  <br><br>
+  <h2>Angular HTTP</h2>
+  <br><br>
+
+  Angular comes with its own HTTP library which we can use to call out to external APIs.
+  When we make calls to an external server, we want our user to continue to be able to interact with the page. 
+  That is, we don’t want our page to freeze until the HTTP request returns from the external server.
+  To achieve this effect, our HTTP requests are asynchronous.
+  Dealing with asynchronous code is, historically, more tricky than dealing with synchronous code.<br>
+  In Javascript, there are generally three approaches to dealing with async code:<br>
+  1. Callbacks <br>
+  2. Promises  <br>
+  3. Observables <br><br>
+   
+  In Angular 2, the preferred method of dealing with async code is using Observables<br>
+
+  <div class="container">      
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Basis for comparison</th>
+          <th>Synchronize transformation</th>
+          <th>ASynchronize transformation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Meaning</td>
+          <td>Send data in the form of block or frames</td>
+          <td>Send 1 byte or character at a time</td>
+        </tr>
+        <tr>
+          <td>Transmission speed</td>
+          <td>Fast</td>
+          <td>Slow</td>
+        </tr>
+        <tr>
+          <td>Time Interval</td>
+          <td>Constant</td>
+          <td>Random</td>
+        </tr>
+        <tr>
+          <td>Cost</td>
+          <td>Expensive</td>
+          <td>Economical</td>
+        </tr>
+        <tr>
+          <td>Gap between Data</td>
+          <td>Absent</td>
+          <td>Present</td>
+        </tr>
+        <tr>
+          <td>Example</td>
+          <td>Chat room, video conference, telephone conv</td>
+          <td>Letters, emails, forums</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="container">      
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Promise</th>
+          <th>Observable</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Provide a single future value</td>
+          <td>Emits multiple value over time</td>
+        </tr>
+        <tr>
+          <td>Not lazy/ single value</td>
+          <td>Lazy/ over time</td>
+        </tr>
+        <tr>
+          <td>Not cancellable</td>
+          <td>Cancellable (by unsubscribing)</td>
+        </tr>
+  </tbody>
+  </table>
+  </div>
+  <hr>
+  <div class="warning">
+  You can use promise in Angular 2 but recommended is observable.
+</div>
+  <img src="../assets/Angular/http_req.png" class="img-rounded" alt="Dependency Injection" width="754" height="400"><br><br>
+  <br>
+<h3>Rxjs:</h3> Rxjs(Reactive extensions) is an independent library(3rd party library), which are working on data stream. Which are getting asynchronously so whenever we find any asynchronous call either in java, python use Rxjs.<br> <br>
+<b>RXJS:</b> Asynchronous Data Stream <br>
+<b>Asynchronous:</b> A register a callback to be notified when results are available.<br>
+<b>Data:</b> raw information, number, string, objects (Array, set)<br>
+<b>Streams:</b> Sequence of data made available over time.<br>
+<h3>Observable</h3><br>
+A sequence of items that arrive asynchronous over time.
+ 
+<b>Observable Operator:</b><br>
+Methods on observables that compose new observable.<br>
+Transform the source observable in some way.<br>
+Process each value as it is emitted.<br>
+
+<b>Step 1. import from @angular/http</b><br>
+Registering the Http Service Provides app.module.ts<br>
+<div class="vl">
+    <textarea highlight-js [options]="{}" [lang]="'typescript'">
+import  { HttpModule } from '@angular/http';
+    </textarea></div><br>
+In our NgModule we will add HttpModule to the list of imports. The effect is that we will be able to
+inject Http (and a few other modules) into our components.<br>
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+imports: [
+BrowserModule,
+HttpModule // --- right here
+]
+</textarea></div>
+<br>
+HTTP calls in Angular 2 return observables, so we need to use RxJS methods to operate on them. (Whereas in angular 1 using promise that gets returned by using .then)
+<br>
+ <b>Step 2: Emp Service</b>
+ <div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+    import { Http, Response} from '@angular/http';
+    import {Observable } from 'rxjs/observable';
+    import 'rxjs/add/operator/map';
+    @Injectable()
+    export class EmpService
+    {
+    
+</textarea></div><br>
+ 1. Inject the Http service into our components (or anywhere we use DI)<br>
+ <div class="vl">
+    <textarea highlight-js [options]="{}" [lang]="'typescript'">
+ constructor( private _http:Http)
+{
+
+}
+</textarea></div><br>
+ 2. Make http call from EmpService<br>
+ <div class="vl">
+    <textarea highlight-js [options]="{}" [lang]="'typescript'">
+        getEmp():Observable<IEmp[]>
+            {	
+                  return this._http.get("src/app/data/empData.json");
+            }
+            
+    </textarea></div><br>
+3. Receive the Observable and map it.<br>
+we use the map operator to take the response data, convert it to JSON<br>
+<div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+    getEmp():Observable<IEmp[]>
+        {
+                return this._http.get("src/app/data/empData.json");
+                .map((response:Response)=><IEmp[]> response.json());
+                   
+        //OR
+                .map(resonse=>response.json());
+                   
+        //OR
+                .map(function test(response)
+        {
+                return response.json();
+        })
+        }
+         
+      </textarea></div> 
+4. Subscribe to the observable <br>
+we need to subscribe to it so that we can observe values that are returned.<br>
+The json reutrn it to any subscribers that are waiting for the data to resolve.<br><br>
+ 
+empComponent.ts<br>
+OnInIt() or in constructor()<br>
+<div class="vl">
+  <textarea highlight-js [options]="{}" [lang]="'typescript'">
+    constructor(private _empService:EmpService)
+    {
+                this._empService.getEmp()
+                .subscribe(name=>this.name=name);
+    }
+     
+    } //EmpServoce class end
+  </textarea>
+</div>
+<div class="vl">
+    <textarea highlight-js [options]="{}" [lang]="'typescript'">
+    /*Assign the Emp Data to local variable in view*/
+    <table>
+    <tr *ngFor="let arr of name">
+    <td>{ {arr.fname } }</td>
+    <td>{ {arr.lname } }</td>
+    <td>{ {arr.age } }</td>
+    </tr>
+    </table>
+ </textarea></div>
+ 
+ <h3>Http Request:</h3><br>
+ App.component.ts<br>
+ <div class="vl">
+<textarea highlight-js [options]="{}" [lang]="'typescript'">
+    import { Http, Response } from '@angular/http'
+ 
+    export class AppComponent
+    {
+    /* get method return data in json so to accept json object data declare variable with Object type */
+     
+    data:Object
+    
+    constructor(private http:Http){
+    }
+    makeRequest():void
+    {
+    this.http.request('src/app/data/empData.json');
+    .subscribe((res:Response)=>
+    { this.data=res.json();
+    console.log"fname:"+this.data[0].fname)  //sachin
+    });
+    }
+    }
+    
+</textarea></div> 
+ How to retrieve fetch data from http get call
+  
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<footer class="main">
+  <button type="button" class="btn bottomNextBtn" (click)="next()">Next</button>
+  <button type="button" class="btn-default bottomPrevBtn" (click)="prev()">Previous</button> 
+</footer>
